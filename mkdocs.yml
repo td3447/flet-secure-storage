@@ -1,0 +1,7 @@
+site_name: FletSecureStorage
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings

@@ -1,0 +1,14 @@
+{
+    // Set Black as the default formatter
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    // Format on save
+    "editor.formatOnSave": true,
+    // isort: organize imports on save
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    // Enable Pylance type checking (basic)
+    "python.analysis.typeCheckingMode": "basic",
+}

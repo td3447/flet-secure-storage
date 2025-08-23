@@ -1,0 +1,38 @@
+[project]
+name = "flet-secure-storage"
+version = "0.1.0"
+description = "FletSecureStorage control for Flet"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "td3447", email = "td3447@proton.me" }]
+dependencies = ["flet>=0.28.3"]
+
+[project.urls]
+Homepage = "https://mydomain.dev"
+Documentation = "https://github.com/MyGithubAccount/flet-secure-storage"
+Repository = "https://github.com/MyGithubAccount/flet-secure-storage"
+Issues = "https://github.com/MyGithubAccount/flet-secure-storage/issues"
+
+[tool.setuptools.package-data]
+"flutter.flet_secure_storage" = ["**/*"]
+
+[tool.uv]
+dev-dependencies = [
+    "flet[all]==0.28.3",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
+
+[tool.poetry.group.dev.dependencies]
+flet = { extras = ["all"], version = "0.28.3" }
+mkdocs = "*"
+mkdocstrings = { extras = ["python"], version = "*" }
+mkdocs-material = "*"
+
+[tool.setuptools]
+license-files = []
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
