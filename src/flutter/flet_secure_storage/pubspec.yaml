@@ -1,20 +1,29 @@
 name: flet_secure_storage
 description: Flet FletSecureStorage control
-repository: https://github.com/td3447/flet-secure-storage/src/flutter/flet_secure_storage
-version: 0.1.0
 homepage: https://github.com/td3447/flet-secure-storage
+repository: https://github.com/td3447/flet-secure-storage
+issue_tracker: https://github.com/td3447/flet-secure-storage/issues
+publish_to: none
+version: 0.1.0
 
 environment:
-  sdk: ">=3.3.0 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
-  flet: 0.28.3
+  flet:
+    path: ../../../../../flet/packages/flet
   flutter:
     sdk: flutter
   flutter_secure_storage: ^9.2.4
 
+topics:
+  - flet
+  - flutter
+  - secure
+  - storage
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
+  flutter_lints: ^3.0.1
