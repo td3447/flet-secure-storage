@@ -18,7 +18,7 @@ Issues = "https://github.com/td3447/flet-secure-storage/issues"
 
 [tool.uv]
 dev-dependencies = [
-    "flet[all]==0.28.3",
+    "flet[all]>=0.28.3",
     "mkdocs",
     "mkdocs-material",
     "mkdocstrings[python]",
