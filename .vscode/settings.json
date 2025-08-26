@@ -3,6 +3,10 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
+    // Set Dart as the default formatter for Dart files
+    "[dart]": {
+        "editor.defaultFormatter": "Dart-Code.dart-code"
+    },
     // Format on save
     "editor.formatOnSave": true,
     // isort: organize imports on save
