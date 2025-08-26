@@ -1,1 +1,1 @@
-from flet_secure_storage.flet_secure_storage import FletSecureStorage
+from flet_secure_storage.secure_storage import SecureStorage
