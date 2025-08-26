@@ -1,17 +1,17 @@
 [project]
 name = "flet-secure-storage"
 version = "0.1.0"
-description = "FletSecureStorage control for Flet"
+description = "A Flet exetension that manages data in secure storage."
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{ name = "td3447", email = "td3447@proton.me" }]
 dependencies = ["flet>=0.28.3"]
 
 [project.urls]
-Homepage = "https://mydomain.dev"
-Documentation = "https://github.com/MyGithubAccount/flet-secure-storage"
-Repository = "https://github.com/MyGithubAccount/flet-secure-storage"
-Issues = "https://github.com/MyGithubAccount/flet-secure-storage/issues"
+Homepage = "https://github.com/td3447/flet-secure-storage"
+Documentation = "https://github.com/td3447/flet-secure-storage"
+Repository = "https://github.com/td3447/flet-secure-storage"
+Issues = "https://github.com/td3447/flet-secure-storage/issues"
 
 [tool.setuptools.package-data]
 "flutter.flet_secure_storage" = ["**/*"]

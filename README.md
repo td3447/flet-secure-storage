@@ -11,7 +11,7 @@ Link to git repository:
 
 ```
 dependencies = [
-  "flet-secure-storage @ git+https://github.com/MyGithubAccount/flet-secure-storage",
+  "flet-secure-storage @ git+https://github.com/td3447/flet-secure-storage",
   "flet>=0.28.3",
 ]
 ```
@@ -34,4 +34,4 @@ flet build macos -v
 
 ## Documentation
 
-[Link to documentation](https://MyGithubAccount.github.io/flet-secure-storage/)
+[Link to documentation](https://github.com/td3447/flet-secure-storage/)

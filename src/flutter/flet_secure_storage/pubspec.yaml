@@ -1,8 +1,8 @@
 name: flet_secure_storage
 description: Flet FletSecureStorage control
-repository: https://github.com/MyGithubAccount/flet-secure-storage/src/flutter/flet_secure_storage
+repository: https://github.com/td3447/flet-secure-storage/src/flutter/flet_secure_storage
 version: 0.1.0
-homepage: https://github.com/MyGithubAccount/flet-secure-storage
+homepage: https://github.com/td3447/flet-secure-storage
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -17,4 +17,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^6.0.0
