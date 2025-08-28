@@ -1,19 +1,35 @@
+# https://peps.python.org/pep-0621/
 [project]
 name = "flet-secure-storage"
 version = "0.1.0"
-description = "A Flet exetension that manages data in secure storage."
+description = "A Flet extension based on flutter_secure_storage."
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "td3447", email = "td3447@proton.me" }]
+license = { file = "LICENSE" }
+authors = [
+    { name = "td3447", email = "td3447@proton.me" }
+]
+keywords = ["flet", "secure", "storage"]
+# https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
 dependencies = [
-    "flet[all]>=0.70.0.dev0",
+    "flet[all]>=0.70.0.dev0"
 ]
 
 [project.urls]
-Homepage = "https://github.com/td3447/flet-secure-storage"
-Documentation = "https://github.com/td3447/flet-secure-storage"
-Repository = "https://github.com/td3447/flet-secure-storage"
-Issues = "https://github.com/td3447/flet-secure-storage/issues"
+homepage = "https://github.com/td3447/flet-secure-storage"
+documentation = "https://td3447.github.io/flet-secure-storage/"
+repository = "https://github.com/td3447/flet-secure-storage"
+issues = "https://github.com/td3447/flet-secure-storage/issues"
+changelog = "https://github.com/td3447/flet-secure-storage/blob/main/CHANGELOG.md"
 
 [tool.setuptools.package-data]
 "flutter.flet_secure_storage" = ["**/*"]
@@ -25,15 +41,6 @@ dev-dependencies = [
     "mkdocs-material",
     "mkdocstrings[python]",
 ]
-
-[tool.poetry.group.dev.dependencies]
-flet = { extras = ["all"], version = "0.70.0.dev0" }
-mkdocs = "*"
-mkdocstrings = { extras = ["python"], version = "*" }
-mkdocs-material = "*"
-
-[tool.setuptools]
-license-files = []
 
 [build-system]
 requires = ["setuptools"]
