@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Introduction
             
           </span>
         </div>
@@ -185,6 +185,18 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/td3447/flet-secure-storage" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    td3447/flet-secure-storage
+  </div>
+</a>
+      </div>
+    
   </nav>
   
 </header>
@@ -219,6 +231,18 @@
     FletSecureStorage
   </label>
   
+    <div class="md-nav__source">
+      <a href="https://github.com/td3447/flet-secure-storage" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    td3447/flet-secure-storage
+  </div>
+</a>
+    </div>
+  
   <ul class="md-nav__list" data-md-scrollfix>
     
       
@@ -242,7 +266,7 @@
   
   
   <span class="md-ellipsis">
-    Home
+    Introduction
     
   </span>
   
@@ -255,7 +279,7 @@
   
   
   <span class="md-ellipsis">
-    Home
+    Introduction
     
   </span>
   
@@ -578,6 +602,9 @@
                   
 
 
+  
+  
+
 
 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
 <p>A <a href="https://flet.dev/">Flet</a> extension using <a href="https://pub.dev/packages/flutter_secure_storage">flutter_secure_storage</a>.</p>
@@ -613,96 +640,56 @@
 <div class="highlight"><pre><span></span><code>```python
 import flet_secure_storage as fss
 
-
 secure_storage = fss.SecureStorage() # Create an instance of secure_storage
 page.services.append(secure_storage) # Add secure_storage to services
 ```
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must append secure_storage to flet services to make it available for use</p>
+</div>
 <h3 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
 <h4 id="set"><strong>set</strong><a class="headerlink" href="#set" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">secure_storage</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>```python
+await secure_storage.set(&quot;key&quot;, &quot;value&quot;)
+```
+:::flet_secure_storage.SecureStorage.set
 </code></pre></div>
-<ul>
-<li>Input: <ul>
-<li>key   -&gt; String</li>
-<li>value -&gt; String</li>
-</ul>
-</li>
-<li>Output:<ul>
-<li>bool</li>
-</ul>
-</li>
-</ul>
 <hr />
 <h4 id="get"><strong>get</strong><a class="headerlink" href="#get" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">secure_storage</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>```python
+await secure_storage.get(&quot;key&quot;)
+```
+:::flet_secure_storage.SecureStorage.get
 </code></pre></div>
-<ul>
-<li>Input: <ul>
-<li>key   -&gt; String</li>
-</ul>
-</li>
-<li>Output:<ul>
-<li>value -&gt; String</li>
-</ul>
-</li>
-</ul>
 <hr />
 <h4 id="contains_key"><strong>contains_key</strong><a class="headerlink" href="#contains_key" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">secure_storage</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>```python
+await secure_storage.set(&quot;key&quot;)
+```
+:::flet_secure_storage.SecureStorage.contains_key
 </code></pre></div>
-<ul>
-<li>Input: <ul>
-<li>key   -&gt; String</li>
-</ul>
-</li>
-<li>Output:<ul>
-<li>bool</li>
-</ul>
-</li>
-</ul>
 <hr />
 <h4 id="remove"><strong>remove</strong><a class="headerlink" href="#remove" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">secure_storage</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>```python
+await secure_storage.remove(&quot;key&quot;)
+```
+:::flet_secure_storage.SecureStorage.remove
 </code></pre></div>
-<ul>
-<li>Input: <ul>
-<li>key   -&gt; String</li>
-</ul>
-</li>
-<li>Output:<ul>
-<li>bool</li>
-</ul>
-</li>
-</ul>
 <hr />
 <h4 id="get_keys"><strong>get_keys</strong><a class="headerlink" href="#get_keys" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">secure_storage</span><span class="o">.</span><span class="n">get_keys</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>```python
+await secure_storage.get_keys(&quot;key&quot;)
+```
+:::flet_secure_storage.SecureStorage.get_keys
 </code></pre></div>
-<ul>
-<li>Input: <ul>
-<li>key   -&gt; String or None</li>
-</ul>
-</li>
-<li>Output:<ul>
-<li>list  -&gt; String</li>
-</ul>
-</li>
-</ul>
 <hr />
 <h4 id="clear"><strong>clear</strong><a class="headerlink" href="#clear" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">secure_storage</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>```python
+await secure_storage.remove(&quot;key&quot;)
+```
+:::flet_secure_storage.SecureStorage.remove
 </code></pre></div>
-<ul>
-<li>Input: <ul>
-<li>key   -&gt; String</li>
-</ul>
-</li>
-<li>Output:<ul>
-<li>bool</li>
-</ul>
-</li>
-</ul>
 <hr />
 
 
