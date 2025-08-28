@@ -2,3 +2,4 @@
 .flutter
 .venv
 build/
+*.lock
