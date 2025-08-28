@@ -3,9 +3,12 @@ name = "flet-secure-storage-example"
 version = "1.0.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "Flet developer", email = "you@example.com" }]
-dependencies = ["flet-secure-storage", "flet>=0.28.3"]
+dependencies = [
+    "flet-secure-storage @ file://../../src/flet_secure_storage",
+    "flet>=0.70.0.dev0",
+]
 
 [tool.flet]
 # org name in reverse domain name notation, e.g. "com.mycompany".
@@ -29,11 +32,7 @@ path = "src"
 flet-secure-storage = "..\\.." # relative path
 
 [tool.uv]
-dev-dependencies = ["flet[all]==0.28.3"]
+dev-dependencies = ["flet[all]>=0.70.0.dev0"]
 
 [tool.uv.sources]
 flet-secure-storage = { path = "..\\..\\", editable = true }
-
-[tool.poetry.group.dev.dependencies]
-flet = { extras = ["all"], version = "0.28.3" }
-flet-secure-storage = { path = "..\\..\\", develop = true }
