@@ -3,9 +3,11 @@ name = "flet-secure-storage"
 version = "0.1.0"
 description = "A Flet exetension that manages data in secure storage."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "td3447", email = "td3447@proton.me" }]
-dependencies = ["flet>=0.28.3"]
+dependencies = [
+    "flet[all]>=0.70.0.dev0",
+]
 
 [project.urls]
 Homepage = "https://github.com/td3447/flet-secure-storage"
@@ -18,14 +20,14 @@ Issues = "https://github.com/td3447/flet-secure-storage/issues"
 
 [tool.uv]
 dev-dependencies = [
-    "flet[all]>=0.28.3",
+    "flet[all]>=0.70.0.dev0",
     "mkdocs",
     "mkdocs-material",
     "mkdocstrings[python]",
 ]
 
 [tool.poetry.group.dev.dependencies]
-flet = { extras = ["all"], version = "0.28.3" }
+flet = { extras = ["all"], version = "0.70.0.dev0" }
 mkdocs = "*"
 mkdocstrings = { extras = ["python"], version = "*" }
 mkdocs-material = "*"
