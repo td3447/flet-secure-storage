@@ -37,94 +37,16 @@ def main(page: ft.Page):
 ft.run(main)
 ```
 
+## Initilize Class
+
+```python
+import flet_secure_storage as fss
+
+secure_storage = fss.SecureStorage() # Create an instance of secure_storage
+
+page.services.append(secure_storage) # Add secure_storage to services
+```
+
 ## API Reference
 
-
-### Classes
-
-#### **SecureStorage**
-
-    ```python
-    import flet_secure_storage as fss
-
-
-    secure_storage = fss.SecureStorage() # Create an instance of secure_storage
-    page.services.append(secure_storage) # Add secure_storage to services
-    ```
-
-
-### Functions
-
-#### **set**
-
-```python
-await secure_storage.set("key", "value")
-```
-
-- Input: 
-    * key   -> String
-    * value -> String
-- Output:
-    * bool
-
----
-#### **get**
-
-```python
-await secure_storage.get("key")
-```
-
-- Input: 
-    * key   -> String
-- Output:
-    * value -> String
-
----
-#### **contains_key**
-
-```python
-await secure_storage.set("key")
-```
-
-- Input: 
-    * key   -> String
-- Output:
-    * bool
-
----
-#### **remove**
-
-```python
-await secure_storage.remove("key")
-```
-
-- Input: 
-    * key   -> String
-- Output:
-    * bool
-
----
-#### **get_keys**
-
-```python
-await secure_storage.get_keys("key")
-```
-
-- Input: 
-    * key   -> String or None
-- Output:
-    * list  -> String
-
----
-#### **clear**
-
-```python
-await secure_storage.remove("key")
-```
-
-- Input: 
-    * key   -> String
-- Output:
-    * bool
-
----
+:::flet_secure_storage.SecureStorage

@@ -1,4 +1,8 @@
 site_name: FletSecureStorage
+repo_url: https://github.com/td3447/flet-secure-storage
+repo_name: td3447/flet-secure-storage
+edit_uri: edit/main/docs/
+
 
 theme:
   name: material
@@ -25,11 +29,12 @@ plugins:
             - import sys; sys.path.append("src")
           options:
             docstring_style: google
-            show_source: false
+            show_source: true
             merge_init_into_class: true
             separate_signature: true
             show_signature: true
-            show_root_toc_entry: false
+            show_root_heading: false
+            group_by_category: true
 
 markdown_extensions:
   - admonition
