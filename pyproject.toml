@@ -20,11 +20,11 @@ classifiers = [
 dependencies = ["flet[all]>=0.70.0.dev0"]
 
 [project.urls]
-homepage = "https://github.com/td3447/flet-secure-storage"
-documentation = "https://td3447.github.io/flet-secure-storage/"
-repository = "https://github.com/td3447/flet-secure-storage"
-issues = "https://github.com/td3447/flet-secure-storage/issues"
-changelog = "https://github.com/td3447/flet-secure-storage/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/td3447/flet-secure-storage"
+Documentation = "https://td3447.github.io/flet-secure-storage/"
+Repository = "https://github.com/td3447/flet-secure-storage"
+Issues = "https://github.com/td3447/flet-secure-storage/issues"
+Changelog = "https://github.com/td3447/flet-secure-storage/blob/main/CHANGELOG.md"
 
 [tool.setuptools.package-data]
 "flutter.flet_secure_storage" = ["**/*"]
