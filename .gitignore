@@ -5,4 +5,6 @@
 *.lock
 /site
 /dist
-.pypirc
+.idea
+/tests
+/dev
