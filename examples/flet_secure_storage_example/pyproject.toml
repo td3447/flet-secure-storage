@@ -32,7 +32,7 @@ path = "src"
 flet-secure-storage = "..\\.." # relative path
 
 [tool.uv]
-dev-dependencies = ["flet[all]>=0.80.0"]
+dev-dependencies = ["flet>=0.80.0"]
 
 [tool.uv.sources]
 flet-secure-storage = { path = "..\\..\\", editable = true }
