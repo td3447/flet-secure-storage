@@ -13,11 +13,7 @@ class SecureStorageService extends FletService {
     super.init(); // Calls FletService.init()
 
     _storage = const FlutterSecureStorage(
-        aOptions: AndroidOptions(
-            // TODO: Deprecated- encryptedSharedPreferences will be removed in the next version (10) and will default to true.
-            // https://github.com/juliansteenbakker/flutter_secure_storage?tab=readme-ov-file#important-notice-for-android
-            encryptedSharedPreferences: true,
-            sharedPreferencesName: "FletSecureStorage"),
+        aOptions: AndroidOptions(sharedPreferencesName: "FletSecureStorage"),
         iOptions: IOSOptions(),
         mOptions: MacOsOptions(),
         lOptions: LinuxOptions(),
