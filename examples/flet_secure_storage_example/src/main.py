@@ -1,3 +1,12 @@
+"""
+Flet Secure Storage Example
+
+Refactored Secure Storage Example using flet_secure_storage extension.
+
+Using Flet 0.80.0
+
+"""
+
 import flet as ft
 
 import flet_secure_storage as fss
@@ -57,7 +66,7 @@ async def main(page: ft.Page):
         message.value = f"Keys with prefix '{key_field.value}' are:"
         output_field.controls.extend(
             [
-                ft.Text(f"{pair.split(':', 1)[0]}: {pair.split(':', 1)[1]}")
+                ft.Text(value=f"{pair.split(':', 1)[0]}: {pair.split(':', 1)[1]}")
                 for pair in pairs
             ]
         )
@@ -65,6 +74,7 @@ async def main(page: ft.Page):
     async def _clear(_e: ft.Event[ft.Button]):
         # Clears all key-value pairs from secure storage, returns bool
         _clear_messages()
+        _clear_fields()
         if await secure_storage.clear():
             message.value = "Cleared all key-value pairs"
         else:
@@ -79,18 +89,22 @@ async def main(page: ft.Page):
         value_field.value = ""
 
     page.add(
-        ft.Text("Secure Storage Example"),
+        ft.Text(value="Flet Secure Storage Example"),
         key_field := ft.TextField(label="Key", autofocus=True),
         value_field := ft.TextField(label="Value"),
-        message := ft.Text(""),
+        message := ft.Text(value=""),
         ft.Divider(),
         output_field := ft.Column(),
-        ft.Button(content="Set Value", on_click=_set),
-        ft.Button(content="Get Value", on_click=_get),
-        ft.Button(content="Contains Key", on_click=_contains_key),
-        ft.Button(content="Remove Value", on_click=_remove),
-        ft.Button(content="Get Keys by Prefix", on_click=_get_keys),
-        ft.Button(content="Clear Values", on_click=_clear),
+        ft.Column(
+            controls=[
+                ft.Button(content="Set Value", on_click=_set),
+                ft.Button(content="Get Value", on_click=_get),
+                ft.Button(content="Contains Key", on_click=_contains_key),
+                ft.Button(content="Remove Value", on_click=_remove),
+                ft.Button(content="Get Keys by Prefix", on_click=_get_keys),
+                ft.Button(content="Clear Values", on_click=_clear),
+            ],
+        ),
     )
 
 
