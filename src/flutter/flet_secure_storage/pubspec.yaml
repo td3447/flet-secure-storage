@@ -12,7 +12,6 @@ environment:
 
 dependencies:
   flet: ^0.80.0
-  # path: ../../../../../flet/packages/flet
   flutter:
     sdk: flutter
   flutter_secure_storage: ^10.0.0
