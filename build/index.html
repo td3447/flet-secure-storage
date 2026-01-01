@@ -9,24 +9,28 @@
       
       
       
+        <link rel="prev" href="../api/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
       
       
         
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>FletSecureStorage</title>
+        <title>Build From Source - FletSecureStorage</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -45,9 +49,9 @@
       
     
     
-      <link rel="stylesheet" href="/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#build-from-source" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -83,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="FletSecureStorage" class="md-header__button md-logo" aria-label="FletSecureStorage" data-md-component="logo">
+    <a href=".." title="FletSecureStorage" class="md-header__button md-logo" aria-label="FletSecureStorage" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -103,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Build From Source
             
           </span>
         </div>
@@ -219,7 +228,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="FletSecureStorage" class="md-nav__button md-logo" aria-label="FletSecureStorage" data-md-component="logo">
+    <a href=".." title="FletSecureStorage" class="md-nav__button md-logo" aria-label="FletSecureStorage" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -249,7 +258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -276,7 +285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -300,18 +309,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -332,7 +343,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -347,10 +358,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/build/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build From Source
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -366,6 +404,65 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prepare the Environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare the Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-wheel-for-pypi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building wheel for PyPi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -378,7 +475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/troubleshooting/" class="md-nav__link">
+      <a href="../troubleshooting/" class="md-nav__link">
         
   
   
@@ -423,6 +520,55 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prepare the Environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare the Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-wheel-for-pypi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building wheel for PyPi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -435,8 +581,99 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="build-from-source">Build from Source<a class="headerlink" href="#build-from-source" title="Permanent link">&para;</a></h1>
+<p>Use this section if you would like to make changes to the source code for your own project.</p>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://git-scm.com/install/">Git</a></li>
+<li><a href="https://docs.astral.sh/uv/">UV Astral</a></li>
+<li><a href="https://www.python.org/">Python 3.10+</a></li>
+</ul>
+<h2 id="prepare-the-environment">Prepare the Environment<a class="headerlink" href="#prepare-the-environment" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Clone the repository to the location of your choosing.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/td3447/flet-secure-storage.git
+</code></pre></div>
+</li>
+<li>
+<p>From the root directory, install flet with uv.</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>sync
+</code></pre></div>
+</li>
+<li>
+<p>Change to the build directory.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/flet_secure_storage_example
+</code></pre></div>
+</li>
+<li>
+<p>Build the project (initially). Choose your system (windows, macos, etc.)</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>flet<span class="w"> </span>build<span class="w"> </span>&lt;system&gt;
+</code></pre></div>
+</li>
+</ol>
+<h3 id="building-wheel-for-pypi">Building wheel for PyPi<a class="headerlink" href="#building-wheel-for-pypi" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Build extension</p>
+<div class="highlight"><span class="filename">Build for Windows</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/flet_secure_storage_example
+flet<span class="w"> </span>build<span class="w"> </span>windows
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><span class="filename">Build for Android</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/flet_secure_storage_example
+flet<span class="w"> </span>build<span class="w"> </span>apk
+</code></pre></div>
+</li>
+<li>
+<p>Start from root, where overall pyproject.toml is located</p>
+</li>
+<li>
+<p>Install modules
+    <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>build
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>py<span class="w"> </span>-m<span class="w"> </span>build
+</code></pre></div>
+<div class="highlight"><span class="filename">output</span><pre><span></span><code>Successfully<span class="w"> </span>built<span class="w"> </span>flet_secure_storage-0.2.0.tar.gz<span class="w"> </span>and<span class="w"> </span>flet_secure_storage-0.2.0-py3-none-any.whl
+</code></pre></div>
+<div class="highlight"><span class="filename">Build for PyPi</span><pre><span></span><code><span class="n">uv</span> <span class="n">run</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">twine</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create .pypirc file C:/Users/<user>/.pypirc  with the following contents</p>
+<div class="highlight"><span class="filename">.pypirc</span><pre><span></span><code><span class="k">[distutils]</span>
+<span class="n">index-servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">pypi</span>
+
+<span class="k">[pypi]</span>
+<span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">__</span><span class="n">token__</span>
+<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">pypi-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  &lt;- token from PyPi</span>
+</code></pre></div>
+</li>
+<li>
+<p>Upload to PyPi</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>twine<span class="w"> </span>upload<span class="w"> </span>dist/*
+</code></pre></div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -473,10 +710,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["content.code.copy"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
