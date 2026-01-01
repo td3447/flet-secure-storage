@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/td3447/flet-secure-storage.svg)](https://github.com/td3447/flet-secure-storage/blob/main/LICENSE)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/flet-secure-storage)](https://pypi.python.org/pypi/flet-secure-storage)
 
-[![Requires Flet >=0.70.0.dev0](https://img.shields.io/badge/Flet-%3E%3D0.70.0.dev0-blue)](https://pypi.org/project/flet/#history)
+[![Requires Flet >=0.80.0.dev0](https://img.shields.io/badge/Flet-%3E%3D0.80.0-blue)](https://pypi.org/project/flet/0.80.0/)
 
 
 An encrypted storage option for [Flet](https://flet.dev) that stores data securely, based on the platform, it is designed to be similiar to the SharedPreferences (previously ClientStorage) class in Flet v1.
@@ -20,33 +20,36 @@ It utilizes the [flutter_secure_storage](https://pub.dev/packages/flutter_secure
 | Platform   | Supported      |
 |------------|:-------------:|
 | Windows    | ✅            |
-| macOS      | 🚧            |
+| Android    | ✅            |
+| Web        | ✅            |
 | Linux      | 🚧            |
-| Android    | 🚧            |
+| macOS      | 🚧            |
 | iOS        | 🚧            |
-| Web        | 🚧            |
+
+> [!NOTE]
+> Currently I am unable to verify on macOS or iOS. Still working on Linux.
 
 ## Flet Compatibility
 
 | Version       | Supported   |
 |---------------|:-----------:|
-| > 0.70.0.dev0 | ✅         |
+| > 0.80.0      | ✅         |
 | < 0.28.3      | ❌         |
 
 ## Usage
 
 ### Installation
 
-To install the `flet-permission-handler` package and add it to your project dependencies:
+To install the `flet-secure-storage` package and add it to your project dependencies:
 
 - Using `uv`:
     ```bash
-    uv add flet-permission-handler
+    uv add flet-secure-storage
     ```
 
 - Using `pip`:
     ```bash
-    pip install flet-permission-handler
+    pip install flet-secure-storage
     ```
     After this, you will have to manually add this package to your `requirements.txt` or `pyproject.toml`.
 
@@ -54,7 +57,7 @@ To install the `flet-permission-handler` package and add it to your project depe
     [project]
     dependencies = [
         "flet-secure-storage",
-        "flet[all]>=0.70.0.dev0",
+        "flet>=0.80.0",
     ]
     ```
 
