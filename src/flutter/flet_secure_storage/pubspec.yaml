@@ -4,18 +4,18 @@ homepage: https://github.com/td3447/flet-secure-storage
 repository: https://github.com/td3447/flet-secure-storage
 issue_tracker: https://github.com/td3447/flet-secure-storage/issues
 publish_to: none
-version: 0.1.0
+version: 0.2.0
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
-  flet:
-    path: ../../../../../flet/packages/flet
+  flet: ^0.80.0
+  # path: ../../../../../flet/packages/flet
   flutter:
     sdk: flutter
-  flutter_secure_storage: ^9.2.4
+  flutter_secure_storage: ^10.0.0
 
 topics:
   - flet
