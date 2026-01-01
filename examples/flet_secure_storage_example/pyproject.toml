@@ -6,8 +6,8 @@ readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Flet developer", email = "you@example.com" }]
 dependencies = [
-    "flet-secure-storage @ file://../../src/flet_secure_storage",
-    "flet>=0.70.0.dev0",
+    "flet-secure-storage @ file://${PROJECT_ROOT}../../src/flet_secure_storage",
+    "flet>=0.80.0",
 ]
 
 [tool.flet]
@@ -32,7 +32,7 @@ path = "src"
 flet-secure-storage = "..\\.." # relative path
 
 [tool.uv]
-dev-dependencies = ["flet[all]>=0.70.0.dev0"]
+dev-dependencies = ["flet[all]>=0.80.0"]
 
 [tool.uv.sources]
 flet-secure-storage = { path = "..\\..\\", editable = true }
