@@ -13,7 +13,7 @@ class SecureStorage(ft.Service):
     https://github.com/juliansteenbakker/flutter_secure_storage
 
     The functions used are to mirror the client_storage calls
-    https://flet.dev/docs/cookbook/client-storage/
+    https://docs.flet.dev/cookbook/client-storage/
     """
 
     async def set(self, key: str, value: Any) -> bool:
