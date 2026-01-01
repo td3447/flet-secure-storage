@@ -1,10 +1,11 @@
 site_name: FletSecureStorage
 repo_url: https://github.com/td3447/flet-secure-storage
 repo_name: td3447/flet-secure-storage
-edit_uri: edit/main/docs/
 
 theme:
-  name: readthedocs
+  name: material
+  features:
+    - content.code.copy
   palette:
     - scheme: default
       primary: indigo
@@ -36,17 +37,17 @@ plugins:
             group_by_category: true
 
 markdown_extensions:
-  - admonition
   - toc:
       permalink: true
-  - pymdownx.details
   - pymdownx.superfences
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.blocks.tab
+  - pymdownx.blocks.admonition
 
 docs_dir: docs
 
 nav:
   - Home: index.md
   - API Reference: api.md
+  - User Guide:
+      - Build From Source: build.md
+      - Troubleshooting: troubleshooting.md
