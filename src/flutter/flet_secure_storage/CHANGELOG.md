@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.0](https://github.com/td3447/flet-secure-storage/compare/0.1.0...0.2.0) - Update for Flet 0.80.0 beta release
+## References
+### Flet
+- https://flet.dev/docs/extend/user-extensions
+
+### Flutter
+- https://github.com/juliansteenbakker/flutter_secure_storage
+
+## Major Changes
+- Updated to flutter_secure_storage 10.0.0 - which features breaking changes.
+- Updated to flet 0.80.0 - which has progressed from alpha to beta.
+
+## Minor Changes
+- Refactored example to work with Flet 0.80.0
+
 ## [0.1.0](https://github.com/td3447/flet-secure-storage/compare/0.1.0...0.1.0) - Initial Release
 
 ## References
