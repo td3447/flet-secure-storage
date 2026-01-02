@@ -1,10 +1,58 @@
-*.egg-info
-.flutter
-.venv
-/build/
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs / editors
+# .vscode/
+.idea/
+*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.egg-info/
+*.eggs/
+.eggs/
+pip-wheel-metadata/
+.env
+.venv/
+venv/
+env/
+ENV/
+.tox/
+.mypy_cache/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.cache
+*.log
+
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-*
+# If this is a Flutter app, consider committing pubspec.lock; if a package, ignore it.
+pubspec.lock
+
+# Build / distribution artifacts
+dist/
+build/
+site/
+wheelhouse/
+*.whl
+
+# Misc
 *.lock
-/site
-/dist
-.idea
-/tests
-/dev
+.DS_Store
+
+# Local configuration files
+/.dist
+/.dev
