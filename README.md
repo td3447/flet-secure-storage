@@ -26,8 +26,7 @@ It utilizes the [flutter_secure_storage](https://pub.dev/packages/flutter_secure
 | macOS      | 🚧            |
 | iOS        | 🚧            |
 
-> [!NOTE]
-> Currently I am unable to verify on macOS or iOS. Still working on Linux.
+ℹ️ **Note:** Currently unable to verify on macOS or iOS. Still working on Linux.
 
 ## Flet Compatibility
 
@@ -88,7 +87,7 @@ To install the `flet-secure-storage` package and add it to your project dependen
 - **contains_key** - Check if a key exists in storage by it's key
 
     ```python
-    if await secure_storage.set("key"):
+    if await secure_storage.contains_key("key"):
         return True
     ```
 
