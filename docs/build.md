@@ -50,10 +50,21 @@ Use this section if you would like to make changes to the source code for your o
 
 - Start from root, where overall pyproject.toml is located
 - Install modules
+    ```bash
+    uv run pip install --upgrade build
+    ```
+
+    ```bash
+    uv run py -m build
+    ```
+
+    ```bash title="output"
+    Successfully built flet_secure_storage-0.2.0.tar.gz and flet_secure_storage-0.2.0-py3-none-any.whl
+    ```
 
     ```py title="Build for PyPi"
 
-    pip install build twine
+    uv run pip install --upgrade twine
     ```
 
 - Create .pypirc file C:/Users/<user>/.pypirc  with the following contents
@@ -70,5 +81,5 @@ Use this section if you would like to make changes to the source code for your o
 - Upload to PyPi
 
     ```bash
-    twine upload dist/*
+    uv run twine upload dist/*
     ```
