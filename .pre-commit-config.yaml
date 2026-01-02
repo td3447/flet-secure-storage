@@ -1,18 +1,29 @@
+# uv run pre-commit install --install-hooks
 repos:
-# Black code formatter
-# https://black.readthedocs.io/en/stable/integrations/source_version_control.html
-# https://black.readthedocs.io/en/stable/change_log.html#id101
--   repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 25.12.0
-    hooks:
-    -   id: black
-        language_version: python3.13
+    # Black code formatter
+    # https://black.readthedocs.io/en/stable/integrations/source_version_control.html
+    # https://black.readthedocs.io/en/stable/change_log.html#id101
+    - repo: https://github.com/psf/black-pre-commit-mirror
+      rev: 25.12.0
+      hooks:
+          - id: black
+            language_version: python3.13
 
--   repo: https://github.com/pycqa/isort
-# isort import sorter
-# https://pycqa.github.io/isort/docs/configuration/black_compatibility.html
-    rev: 7.0.0
-    hooks:
-    -   id: isort
-        name: isort (python)
-        args: ["--profile", "black", "--filter-files"]
+    - repo: https://github.com/pycqa/isort
+      # isort import sorter
+      # https://pycqa.github.io/isort/docs/configuration/black_compatibility.html
+      rev: 7.0.0
+      hooks:
+          - id: isort
+            name: isort (python)
+            args: ["--profile", "black", "--filter-files"]
+
+    - repo: local
+      # pytests
+      hooks:
+          - id: pytest-fast
+            name: pytest (fast smoke tests)
+            entry: uv run pytest -q -m smoke
+            language: system
+            pass_filenames: false
+            stages: [pre-commit]
