@@ -1,1 +1,3 @@
-from flet_secure_storage.secure_storage import SecureStorage
+from .secure_storage import SecureStorage
+
+__all__ = ["SecureStorage"]
