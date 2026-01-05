@@ -21,18 +21,18 @@ It utilizes the [flutter_secure_storage](https://pub.dev/packages/flutter_secure
 |------------|:-------------:|
 | Windows    | ✅            |
 | Android    | ✅            |
-| Web        | ✅            |
-| Linux      | 🚧            |
+| Web        | ⚠️            |
+| Linux      | ⚠️            |
 | macOS      | 🚧            |
 | iOS        | 🚧            |
 
-ℹ️ **Note:** Currently unable to verify on macOS or iOS. Still working on Linux.
+ℹ️ **Note:** Currently unable to verify on macOS or iOS.
 
 ## Flet Compatibility
 
 | Version       | Supported   |
 |---------------|:-----------:|
-| > 0.80.0      | ✅         |
+| >= 0.80.0     | ✅         |
 | < 0.28.3      | ❌         |
 
 ## Usage
@@ -63,12 +63,41 @@ To install the `flet-secure-storage` package and add it to your project dependen
 ### Basic Usage
 
 #### Initialize
- ```python
-    import flet_secure_storage as fss
+- Add secure_storage to the page services.
 
-    secure_storage = fss.SecureStorage() # Create an instance of secure_storage
-    page.services.append(secure_storage) # Add secure_storage to services
-```
+    ```python
+    import flet as ft
+    from flet_secure_storage import SecureStorage
+
+    async def main(page: ft.Page):
+        secure_storage = SecureStorage() # Create an instance of secure_storage
+        page.services.append(secure_storage) # Add secure_storage to services
+
+        # Code
+
+    ft.run(main)
+    ```
+
+#### Initialize with Options
+- Add secure_storage to the page services.
+
+    ```python
+    import flet as ft
+    from flet_secure_storage import SecureStorage, AndroidOptions
+
+    async def main(page: ft.Page):
+        secure_storage = SecureStorage(
+            a_options=AndroidOptions(
+                shared_preferences_name="my_project",
+                preferences_key_prefix="com.project"
+            )
+        ) # Create an instance of secure_storage
+        page.services.append(secure_storage) # Add secure_storage to services
+
+        # Code
+
+    ft.run(main)
+    ```
 
 #### Functions
 
@@ -76,31 +105,43 @@ To install the `flet-secure-storage` package and add it to your project dependen
 
     ```python
     await secure_storage.set("key", "value")
+
+    return bool
     ```
 
 - **get** - Retrieve a value from storage by it's key
 
     ```python
     value = await secure_storage.get("key")
+
+    return value: str
     ```
 
 - **contains_key** - Check if a key exists in storage by it's key
 
     ```python
-    if await secure_storage.contains_key("key"):
-        return True
+    await secure_storage.contains_key("key"):
+        
+    return bool
     ```
 
 - **remove** - Removes the key, value pair from storage
 
     ```python
     await secure_storage.remove("key")
+
+    return bool
     ```
 
 - **get_keys** - Gets all keys that startwith the entered key. Returns all keys if blank.
 
     ```python
-    await secure_storage.get_keys("key")
+    values = await secure_storage.get_keys("key": str = "")
+
+    return values: list[str]
+
+    # input key = "key"
+    # return ['key1:value1', 'key2:value2']
     ```
 
 - **clear** - Clears **all** keys from storage.

@@ -11,7 +11,6 @@
 
 ## Minor Changes
 - Added `_helper.py` to manage functions internal to `secure_storage`
-- upd
 
 ## [0.2.0](https://github.com/td3447/flet-secure-storage/compare/v0.1.0...v0.2.0) - Update for Flet 0.80.0 beta release
 ## References
