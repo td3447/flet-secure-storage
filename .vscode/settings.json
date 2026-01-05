@@ -15,4 +15,13 @@
     },
     // Enable Pylance type checking (basic)
     "python.analysis.typeCheckingMode": "basic",
+    "search.exclude": {
+        "**/build": true
+    },
+    "files.watcherExclude": {
+        "**/build/**": true
+    },
+    "python.analysis.exclude": [
+        "**/build/**"
+    ]
 }
