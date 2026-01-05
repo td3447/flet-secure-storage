@@ -16,34 +16,41 @@ uv add flet-secure-storage
 
 ## Quick Start
 
+### Initialize
+- Add secure_storage to the page services.
+
 ```python
 import flet as ft
+from flet_secure_storage import SecureStorage
 
-import flet_secure_storage as fss
-
-
-def main(page: ft.Page):
-
-    secure_storage = fss.SecureStorage() # Create an instance of secure_storage
+async def main(page: ft.Page):
+    secure_storage = SecureStorage() # Create an instance of secure_storage
     page.services.append(secure_storage) # Add secure_storage to services
 
-    # API Calls here
-
-    page.add(
-        ft.Text("Quick Start")
-    )
+    # Code
 
 ft.run(main)
 ```
 
-## Initilize Class
+### Initialize with Options
+- Add secure_storage to the page services.
 
 ```python
-import flet_secure_storage as fss
+import flet as ft
+from flet_secure_storage import SecureStorage, AndroidOptions
 
-secure_storage = fss.SecureStorage() # Create an instance of secure_storage
+async def main(page: ft.Page):
+    secure_storage = SecureStorage(
+        a_options=AndroidOptions(
+            shared_preferences_name="my_project",
+            preferences_key_prefix="com.project"
+        )
+    ) # Create an instance of secure_storage
+    page.services.append(secure_storage) # Add secure_storage to services
 
-page.services.append(secure_storage) # Add secure_storage to services
+    # Code
+
+ft.run(main)
 ```
 
 ## API Reference

@@ -27,7 +27,14 @@ Use this section if you would like to make changes to the source code for your o
     cd examples/flet_secure_storage_example
     ```
 
-4. Build the project (initially). Choose your system (windows, macos, etc.)
+4. Install the local dependencies needed based on the platform:
+
+    | Platform | Install command    |  Platforms           |
+    |----------|--------------------|----------------------|
+    | Desktop  | `uv sync`          | Windows, Linux, MacOS|
+    | Modbile  | `uv sync --no-dev` | Android, iOS         |
+
+5. Build the project (initially). Choose your system (windows, macos, etc.)
 
     ```bash
     uv run flet build <system>
