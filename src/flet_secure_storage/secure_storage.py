@@ -1,20 +1,116 @@
+import logging
+from collections.abc import Mapping
+from dataclasses import is_dataclass
 from typing import Any, Optional
 
 import flet as ft
 
-__all__ = ["SecureStorage"]
+from .options import (
+    AndroidOptions,
+    IOSOptions,
+    LinuxOptions,
+    MacOsOptions,
+    WebOptions,
+    WindowsOptions,
+)
+from .options.android_options import KeyCipherAlgorithm, StorageCipherAlgorithm
+
+__all__ = [
+    "SecureStorage",
+    "IOSOptions",
+    "AndroidOptions",
+    "LinuxOptions",
+    "WindowsOptions",
+    "WebOptions",
+    "MacOsOptions",
+    "KeyCipherAlgorithm",
+    "StorageCipherAlgorithm",
+]
+
+
+class SecureStorageKeyError(ValueError):
+    """
+    Rasied when an invalid key is provided to SecureStorage methods.
+    """
 
 
 @ft.control("SecureStorage")
 class SecureStorage(ft.Service):
     """
     Create an instance of FlutterSecureStorage in Flet
-    https://pub.dev/packages/flutter_secure_storage
-    https://github.com/juliansteenbakker/flutter_secure_storage
+    [FlutterSecureStorage - pub.dev](https://pub.dev/packages/flutter_secure_storage)
+    [FlutterSecureStorage - GitHub](https://github.com/juliansteenbakker/flutter_secure_storage)
 
-    The functions used are to mirror the client_storage calls
-    https://docs.flet.dev/cookbook/client-storage/
+    The functions used are to mirror the Flet [client_storage](https://docs.flet.dev/cookbook/client-storage/) calls
     """
+
+    def __init__(
+        self,
+        i_options: IOSOptions | None = None,
+        a_options: AndroidOptions | None = None,
+        l_options: LinuxOptions | None = None,
+        w_options: WindowsOptions | None = None,
+        web_options: WebOptions | None = None,
+        m_options: MacOsOptions | None = None,
+    ):
+        self.i_options = i_options if i_options is not None else IOSOptions()
+        self.a_options = a_options if a_options is not None else AndroidOptions()
+        self.l_options = l_options if l_options is not None else LinuxOptions()
+        self.w_options = w_options if w_options is not None else WindowsOptions()
+        self.web_options = web_options if web_options is not None else WebOptions()
+        self.m_options = m_options if m_options is not None else MacOsOptions()
+
+        super().__init__()
+
+    def before_update(self):
+        """
+        Overrides the parent method. This is where we ensure the option
+        dictionaries are correctly formatted for the client.
+
+        Sets each platform options attribute to a dictionary, or raises TypeError
+        if the attribute is not a dataclass with an options() method.
+        """
+        super().before_update()
+        for platform_options in (
+            "i_options",
+            "a_options",
+            "l_options",
+            "w_options",
+            "web_options",
+            "m_options",
+        ):
+            opt = getattr(self, platform_options, None)
+            if opt is None or isinstance(opt, Mapping):
+                continue
+
+            if not hasattr(opt, "options") or not callable(opt.options):
+                raise SecureStorageKeyError(
+                    f"{platform_options!r} must be a dataclass with an options() method."
+                )
+
+            if not is_dataclass(opt) or isinstance(opt, type):
+                raise SecureStorageKeyError(
+                    f"{platform_options!r} must be a dataclass instance with an options() method."
+                )
+
+            options_attr = getattr(opt, "options", None)
+            if not callable(options_attr):
+                raise SecureStorageKeyError(
+                    f"{platform_options!r} must implement an options() method."
+                )
+
+            converted = options_attr()
+            if not isinstance(converted, Mapping):
+                raise SecureStorageKeyError(
+                    f"{platform_options!r}.options() must return a dictionary-like object."
+                )
+            setattr(self, platform_options, converted)
+
+    def _validate_key(self, key: str) -> None:
+        if not isinstance(key, str):
+            raise ValueError(f"Key must be a string. Got {type(key)} instead.")
+        if key.strip() == "":
+            raise ValueError("Key cannot be empty or whitespace.")
 
     async def set(self, key: str, value: Any) -> bool:
         """
@@ -28,7 +124,7 @@ class SecureStorage(ft.Service):
         Returns:
             bool: True if the value was stored successfully, False otherwise
         """
-        assert value is not None
+        self._validate_key(key)
         return await self._invoke_method("set", {"key": key, "value": value})
 
     async def get(self, key: str) -> Optional[str]:
@@ -42,6 +138,7 @@ class SecureStorage(ft.Service):
         Returns:
             Optional[str]: The value associated with the key as a string, or None if not found.
         """
+        self._validate_key(key)
         return await self._invoke_method("get", {"key": key})
 
     async def contains_key(self, key: str) -> bool:
@@ -55,6 +152,7 @@ class SecureStorage(ft.Service):
         Returns:
             bool: True if the key exists, False otherwise.
         """
+        self._validate_key(key)
         return await self._invoke_method("contains_key", {"key": key})
 
     async def remove(self, key: str) -> bool:
@@ -68,9 +166,10 @@ class SecureStorage(ft.Service):
         Returns:
             bool: True if the key was deleted successfully, False otherwise.
         """
+        self._validate_key(key)
         return await self._invoke_method("remove", {"key": key})
 
-    async def get_keys(self, key_prefix: Optional[str]) -> list[str]:
+    async def get_keys(self, key_prefix: str = "") -> list[str]:
         """
         Retrieves all keys from secure storage.
         From flutter_secure_storage: storage.readAll
@@ -83,7 +182,6 @@ class SecureStorage(ft.Service):
                        that match the key_prefix or all keys if the user enters and
                        empty string or None
         """
-        key_prefix = key_prefix or ""
         response: dict[str, str] = await self._invoke_method("get_keys")
 
         return [
