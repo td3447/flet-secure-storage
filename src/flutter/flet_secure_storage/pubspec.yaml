@@ -4,7 +4,7 @@ homepage: https://github.com/td3447/flet-secure-storage
 repository: https://github.com/td3447/flet-secure-storage
 issue_tracker: https://github.com/td3447/flet-secure-storage/issues
 publish_to: none
-version: 0.2.0
+version: 0.3.0
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
