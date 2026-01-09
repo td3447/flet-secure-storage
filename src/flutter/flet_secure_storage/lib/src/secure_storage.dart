@@ -4,7 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // Enum (AndroidOptions)
 KeyCipherAlgorithm _parseKeyCipherAlgorithm(dynamic value) {
-  const defaultAlg = KeyCipherAlgorithm.RSA_ECB_OAEPwithSHA_256andMGF1Padding;
+  final defaultAlg = KeyCipherAlgorithm.RSA_ECB_OAEPwithSHA_256andMGF1Padding;
   if (value == null) {
     return defaultAlg;
   }
@@ -24,7 +24,7 @@ KeyCipherAlgorithm _parseKeyCipherAlgorithm(dynamic value) {
 
 // Enum (AndroidOptions)
 StorageCipherAlgorithm _parseStorageCipherAlgorithm(dynamic value) {
-  const defaultAlg = StorageCipherAlgorithm.AES_GCM_NoPadding;
+  final defaultAlg = StorageCipherAlgorithm.AES_GCM_NoPadding;
   if (value == null) {
     return defaultAlg;
   }
