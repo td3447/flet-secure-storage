@@ -56,3 +56,5 @@ wheelhouse/
 # Local configuration files
 /.dist
 /.dev
+/stubs
+/.github
