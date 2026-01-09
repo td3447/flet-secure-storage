@@ -2,7 +2,7 @@ from enum import Enum
 
 import pytest
 
-from flet_secure_storage._helpers import parse_bool, parse_enum, parse_str
+from flet_secure_storage._helpers import add_prefix, parse_bool, parse_enum, parse_str
 
 
 @pytest.mark.smoke
@@ -55,3 +55,13 @@ def test_parse_enum():
         parse_enum(123, Color)  # type: ignore
     with pytest.raises(TypeError):
         parse_enum(Color.RED, Shape)
+
+
+@pytest.mark.smoke
+def test_add_prefix():
+
+    assert add_prefix("app", ".", "key") == "app.key"
+    assert add_prefix("app", "_", "key") == "app_key"
+    assert add_prefix("", ".", "key") == "key"
+    assert add_prefix("app", ".", "") == "app."
+    assert add_prefix("app.", "", "key") == "app.key"
