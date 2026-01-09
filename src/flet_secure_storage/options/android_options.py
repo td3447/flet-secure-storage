@@ -47,7 +47,7 @@ class StorageCipherAlgorithm(Enum):
 class AndroidOptions:
     """
     Creates Android-specific options for secure storage.
-    [Reference - android_options.dart](https://github.com/juliansteenbakker/flutter_secure_storage/blob/05b1c4be30a1c7142dfba6db41b32aa8e6a38c58/flutter_secure_storage/lib/options/android_options.dart)
+    [Reference - android_options.dart](https://github.com/juliansteenbakker/flutter_secure_storage/blob/05b1c4be30a1c7142dfba6db41b32aa8e6a38c58/flutter_secure_storage/lib/options/android_options.dart)  # noqa: E501
 
     Attributes:
         encrypted_shared_preferences: EncryptedSharedPrefences
@@ -131,7 +131,7 @@ class AndroidOptions:
     biometric_prompt_title: str = "Authenticate to access"
     biometric_prompt_subtitle: str = "Use biometrics or device credentials"
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         # Deprecation warning for encrypted_shared_preferences
         if self.encrypted_shared_preferences is None:
             self.encrypted_shared_preferences = False
@@ -144,9 +144,9 @@ class AndroidOptions:
                 stacklevel=3,
             )
 
-    def biometric(self):
+    def biometric(self) -> dict[str, str | bool]:
         # TODO: implement biometric options
-        pass
+        return {}
 
     def options(
         self,

@@ -6,7 +6,7 @@ class WebOptions:
     """
     Creates Web-specific options for secure storage.
 
-    [Reference - web_options.dart](https://github.com/juliansteenbakker/flutter_secure_storage/blob/05b1c4be30a1c7142dfba6db41b32aa8e6a38c58/flutter_secure_storage/lib/options/web_options.dart)
+    [Reference - web_options.dart](https://github.com/juliansteenbakker/flutter_secure_storage/blob/05b1c4be30a1c7142dfba6db41b32aa8e6a38c58/flutter_secure_storage/lib/options/web_options.dart) # noqa: E501
 
     Attributes:
         db_name: The name of the database used for secure storage.
