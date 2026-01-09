@@ -157,6 +157,8 @@ class AndroidOptions:
         Returns:
             Mapping of option names expected by the Flutter Secure Storage plugin.
         """
+        if self.encrypted_shared_preferences is None:
+            self.encrypted_shared_preferences = False
         return {
             "encryptedSharedPreferences": parse_bool(self.encrypted_shared_preferences),
             "resetOnError": parse_bool(self.reset_on_error),
