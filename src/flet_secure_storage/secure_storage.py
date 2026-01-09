@@ -30,11 +30,11 @@ __all__ = [
 
 class SecureStorageKeyError(ValueError):
     """
-    Rasied when an invalid key is provided to SecureStorage methods.
+    Raised when an invalid key is provided to SecureStorage methods.
     """
 
 
-@ft.control("SecureStorage")
+@ft.control("SecureStorage")  # type: ignore[arg-type]
 class SecureStorage(ft.Service):
     """
     Create an instance of FlutterSecureStorage in Flet
@@ -65,7 +65,10 @@ class SecureStorage(ft.Service):
             self.prefix = prefix.strip()
 
         # Normalize and validate prefix_separator
-        if prefix_separator is None:
+        # If prefix is empty, separator should be empty regardless of input
+        if self.prefix == "":
+            self.prefix_separator = ""
+        elif prefix_separator is None or prefix_separator == "":
             # treat None as empty string
             self.prefix_separator = ""
         elif not isinstance(prefix_separator, str):
@@ -82,7 +85,7 @@ class SecureStorage(ft.Service):
 
         super().__init__()
 
-    def before_update(self):
+    def before_update(self) -> None:
         """
         Overrides the parent method. This is where we ensure the option
         dictionaries are correctly formatted for the client.
@@ -119,12 +122,11 @@ class SecureStorage(ft.Service):
                     f"{platform_options!r} must implement an options() method."
                 )
 
-            converted = options_attr()
-            if not isinstance(converted, Mapping):
+            if not isinstance(options_attr, Mapping):
                 raise SecureStorageKeyError(
                     f"{platform_options!r}.options() must return a dictionary-like object."
                 )
-            setattr(self, platform_options, converted)
+            setattr(self, platform_options, options_attr)
 
     def _validate_key(self, key: str) -> None:
         if not isinstance(key, str):
