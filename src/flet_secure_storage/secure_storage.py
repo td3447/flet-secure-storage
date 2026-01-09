@@ -1,10 +1,10 @@
-import logging
 from collections.abc import Mapping
 from dataclasses import is_dataclass
 from typing import Any, Optional
 
 import flet as ft
 
+from ._helpers import add_prefix
 from .options import (
     AndroidOptions,
     IOSOptions,
@@ -46,6 +46,8 @@ class SecureStorage(ft.Service):
 
     def __init__(
         self,
+        prefix: str | None = None,
+        prefix_separator: str | None = ".",
         i_options: IOSOptions | None = None,
         a_options: AndroidOptions | None = None,
         l_options: LinuxOptions | None = None,
@@ -53,6 +55,24 @@ class SecureStorage(ft.Service):
         web_options: WebOptions | None = None,
         m_options: MacOsOptions | None = None,
     ):
+        # Normalize and validate prefix
+        if prefix is None:
+            # treat None as empty string
+            self.prefix = ""
+        elif not isinstance(prefix, str):
+            raise TypeError(f"Prefix must be a string. Got {type(prefix)} instead.")
+        else:
+            self.prefix = prefix.strip()
+
+        # Normalize and validate prefix_separator
+        if prefix_separator is None:
+            # treat None as empty string
+            self.prefix_separator = ""
+        elif not isinstance(prefix_separator, str):
+            raise TypeError("prefix_separator must be a string or None.")
+        else:
+            self.prefix_separator = prefix_separator
+
         self.i_options = i_options if i_options is not None else IOSOptions()
         self.a_options = a_options if a_options is not None else AndroidOptions()
         self.l_options = l_options if l_options is not None else LinuxOptions()
@@ -125,6 +145,7 @@ class SecureStorage(ft.Service):
             bool: True if the value was stored successfully, False otherwise
         """
         self._validate_key(key)
+        key = add_prefix(self.prefix, self.prefix_separator, key)
         return await self._invoke_method("set", {"key": key, "value": value})
 
     async def get(self, key: str) -> Optional[str]:
@@ -139,6 +160,7 @@ class SecureStorage(ft.Service):
             Optional[str]: The value associated with the key as a string, or None if not found.
         """
         self._validate_key(key)
+        key = add_prefix(self.prefix, self.prefix_separator, key)
         return await self._invoke_method("get", {"key": key})
 
     async def contains_key(self, key: str) -> bool:
@@ -153,6 +175,7 @@ class SecureStorage(ft.Service):
             bool: True if the key exists, False otherwise.
         """
         self._validate_key(key)
+        key = add_prefix(self.prefix, self.prefix_separator, key)
         return await self._invoke_method("contains_key", {"key": key})
 
     async def remove(self, key: str) -> bool:
@@ -167,6 +190,7 @@ class SecureStorage(ft.Service):
             bool: True if the key was deleted successfully, False otherwise.
         """
         self._validate_key(key)
+        key = add_prefix(self.prefix, self.prefix_separator, key)
         return await self._invoke_method("remove", {"key": key})
 
     async def get_keys(self, key_prefix: str = "") -> list[str]:
@@ -182,6 +206,16 @@ class SecureStorage(ft.Service):
                        that match the key_prefix or all keys if the user enters and
                        empty string or None
         """
+        if key_prefix is None or key_prefix.strip() == "":
+            key_prefix = self.prefix
+        elif (
+            key_prefix == self.prefix
+            or key_prefix == f"{self.prefix}{self.prefix_separator}"
+        ):
+            key_prefix = self.prefix
+        else:
+            key_prefix = add_prefix(self.prefix, self.prefix_separator, key_prefix)
+
         response: dict[str, str] = await self._invoke_method("get_keys")
 
         return [

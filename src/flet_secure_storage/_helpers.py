@@ -95,3 +95,20 @@ def parse_enum(enum_val: Enum | str, enum_type: type[Enum]) -> str:
     raise TypeError(
         f"`enum_val` must be {enum_type.__name__}, got {type(enum_val).__name__}"
     )
+
+
+def add_prefix(prefix: str, separator: str, key: str) -> str:
+    """
+    Adds a prefix to the given key with the specified separator.
+
+    Args:
+        prefix (str): The prefix to add.
+        separator (str): The separator to use between the prefix and key.
+        key (str): The original key.
+
+    Returns:
+        str: The new key with the prefix added.
+    """
+    if prefix is None or prefix == "":
+        return key
+    return f"{prefix}{separator}{key}"
