@@ -1,0 +1,18 @@
+{
+    "name": "flet-secure-storage",
+    "version": "0.3.0",
+    "description": "CI/CD tooling for flet-secure-storage",
+    "private": true,
+    "scripts": {
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+        "commitlint": "commitlint --edit"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^20.3.1",
+        "@commitlint/config-conventional": "^20.3.1",
+        "conventional-changelog-cli": "^5.0.0"
+    },
+    "engines": {
+        "node": ">=24.12.0"
+    }
+}
