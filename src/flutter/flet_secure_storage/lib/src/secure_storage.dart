@@ -2,7 +2,7 @@ import 'package:flet/flet.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-// Enum
+// Enum (AndroidOptions)
 KeyCipherAlgorithm _parseKeyCipherAlgorithm(dynamic value) {
   const defaultAlg = KeyCipherAlgorithm.RSA_ECB_OAEPwithSHA_256andMGF1Padding;
   if (value == null) {
@@ -22,6 +22,7 @@ KeyCipherAlgorithm _parseKeyCipherAlgorithm(dynamic value) {
   return defaultAlg;
 }
 
+// Enum (AndroidOptions)
 StorageCipherAlgorithm _parseStorageCipherAlgorithm(dynamic value) {
   const defaultAlg = StorageCipherAlgorithm.AES_GCM_NoPadding;
   if (value == null) {
@@ -153,26 +154,83 @@ class SecureStorageService extends FletService {
 
   Future<dynamic> _invokeMethod(String name, dynamic args) async {
     switch (name) {
+      // Set Key-Value pair
       case "set": // Returns bool
-        await _storage.write(key: args["key"]!, value: args["value"]!);
-        return true;
+        final key = args["key"];
+        final value = args["value"];
+        if (key == null || value == null) {
+          debugPrint("SecureStorage.set: missing key or value in args: $args");
+          return false;
+        }
+        try {
+          await _storage.write(key: key, value: value);
+          return true;
+        } catch (e, stackTrace) {
+          debugPrint("SecureStorage.set error: $e\n$stackTrace");
+          return false;
+        }
 
+      // Get Value by Key
       case "get": // Returns String?
-        return _storage.read(key: args["key"]!);
+        final key = args["key"];
+        if (key == null) {
+          debugPrint("SecureStorage.get: missing key in args: $args");
+          return null;
+        }
+        try {
+          return await _storage.read(key: key);
+        } catch (e, stackTrace) {
+          debugPrint("SecureStorage.get error: $e\n$stackTrace");
+          return null;
+        }
 
+      // Check if Key exists
       case "contains_key": // Returns bool
-        return _storage.containsKey(key: args["key"]!);
+        final key = args["key"];
+        if (key == null) {
+          debugPrint("SecureStorage.contains_key: missing key in args: $args");
+          return false;
+        }
+        try {
+          return await _storage.containsKey(key: key);
+        } catch (e, stackTrace) {
+          debugPrint("SecureStorage.contains_key error: $e\n$stackTrace");
+          return false;
+        }
 
+      // Get all Key-Value pairs
       case "get_keys": // returns Map<String, String>
-        return _storage.readAll();
+        try {
+          return await _storage.readAll();
+        } catch (e, stackTrace) {
+          debugPrint("SecureStorage.get_keys error: $e\n$stackTrace");
+          return <String, String>{};
+        }
 
+      // Remove a Key-Value pair
       case "remove": // Returns bool
-        await _storage.delete(key: args["key"]!);
-        return true;
+        final key = args["key"];
+        if (key == null) {
+          debugPrint("SecureStorage.remove: missing key in args: $args");
+          return false;
+        }
+        try {
+          await _storage.delete(key: key);
+          return true;
+        } catch (e, stackTrace) {
+          debugPrint("SecureStorage.remove error: $e\n$stackTrace");
+          return false;
+        }
 
+      // Clear ALL Key-Value pairs
       case "clear": // Returns bool
-        await _storage.deleteAll();
-        return true;
+        try {
+          await _storage.deleteAll();
+          return true;
+        } catch (e, stackTrace) {
+          debugPrint("SecureStorage.clear error: $e\n$stackTrace");
+          return false;
+        }
 
       default:
         throw Exception("Unknown SecureStorage method: $name");
