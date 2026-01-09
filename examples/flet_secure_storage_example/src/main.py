@@ -10,11 +10,48 @@ Using Flet 0.80.0
 import flet as ft
 
 import flet_secure_storage as fss
+from flet_secure_storage.options import (
+    AndroidOptions,
+    IOSOptions,
+    KeyCipherAlgorithm,
+    LinuxOptions,
+    MacOsOptions,
+    StorageCipherAlgorithm,
+    WebOptions,
+    WindowsOptions,
+)
 
 
 async def main(page: ft.Page):
 
-    secure_storage = fss.SecureStorage()
+    secure_storage = fss.SecureStorage(
+        prefix="net.example ",
+        i_options=IOSOptions(),
+        l_options=LinuxOptions(),
+        m_options=MacOsOptions(),
+        w_options=WindowsOptions(use_backward_compatibility=False),
+        web_options=WebOptions(
+            db_name="FletEncryptedStorage",
+            public_key="FletSecureStorage",
+            wrap_key="",
+            wrap_key_iv="",
+            use_session_storage=False,
+        ),
+        a_options=AndroidOptions(
+            # encrypted_shared_preferences=False, # Deprecated
+            reset_on_error=True,
+            migrate_on_algorithm_change=True,
+            enforce_biometrics=False,
+            key_cipher_algorithm=(
+                KeyCipherAlgorithm.RSA_ECB_OAEPwithSHA_256andMGF1Padding
+            ),
+            storage_cipher_algorithm=(StorageCipherAlgorithm.AES_GCM_NoPadding),
+            shared_preferences_name="",
+            preferences_key_prefix="",
+            biometric_prompt_title="Authenticate to access",
+            biometric_prompt_subtitle="Use biometrics or device credentials",
+        ),
+    )
     page.services.append(secure_storage)
 
     page.window.width = 400
