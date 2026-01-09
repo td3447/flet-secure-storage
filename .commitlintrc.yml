@@ -1,6 +1,7 @@
 # Configuration for commitlint
 # This ensures commit messages follow conventional commit format
 # https://www.conventionalcommits.org/
+# uv run pre-commit install --hook-type commit-msg
 
 extends:
   - "@commitlint/config-conventional"
@@ -8,20 +9,19 @@ extends:
 rules:
   # Allow longer header lines
   header-max-length: [2, "always", 100]
-  
+
   # Types allowed in commit messages
   type-enum:
     - 2
     - always
-    -
-      - feat      # New feature
-      - fix       # Bug fix
-      - docs      # Documentation changes
-      - style     # Code style changes (formatting, etc)
-      - refactor  # Code refactoring
-      - perf      # Performance improvements
-      - test      # Adding or updating tests
-      - build     # Build system changes
-      - ci        # CI configuration changes
-      - chore     # Other changes that don't modify src or test files
-      - revert    # Reverting a previous commit
+    - - feat # New feature
+      - fix # Bug fix
+      - docs # Documentation changes
+      - style # Code style changes (formatting, etc)
+      - refactor # Code refactoring
+      - perf # Performance improvements
+      - test # Adding or updating tests
+      - build # Build system changes
+      - ci # CI configuration changes
+      - chore # Other changes that don't modify src or test files
+      - revert # Reverting a previous commit
