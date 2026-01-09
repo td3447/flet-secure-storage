@@ -8,6 +8,13 @@ desktop.ini
 .idea/
 *.iml
 
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # Python
 __pycache__/
 *.py[cod]
@@ -57,4 +64,3 @@ wheelhouse/
 /.dist
 /.dev
 /stubs
-/.github
