@@ -40,12 +40,18 @@ repos:
         files: \.dart$
         stages: [pre-commit]
 
-  # - repo: local
-  #   # pytest
-  #   hooks:
-  #   - id: pytest-fast
-  #     name: pytest (fast smoke tests)
-  #     entry: uv run pytest -q -m smoke
-  #     language: system
-  #     pass_filenames: false
-  #     stages: [pre-commit]
+  - repo: local
+    # commitlint - validates commit messages
+    hooks:
+      - id: commitlint
+        name: commitlint
+        entry: npx commitlint --edit
+        language: system
+        stages: [commit-msg]
+
+      - id: pytest-fast
+        name: pytest (fast smoke tests)
+        entry: uv run pytest -q -m smoke
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
