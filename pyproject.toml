@@ -30,8 +30,12 @@ Repository = "https://github.com/td3447/flet-secure-storage"
 Issues = "https://github.com/td3447/flet-secure-storage/issues"
 Changelog = "https://github.com/td3447/flet-secure-storage/blob/main/CHANGELOG.md"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.setuptools.package-data]
-"flutter.flet_secure_storage" = ["**/*"]
+"flet_secure_storage" = ["py.typed", "*.pyi", "options/*.pyi"]
+"flutter.flet_secure_storage" = ["pubspec.yaml", "LICENSE", "lib/**/*"]
 
 [dependency-groups]
 dev = [
