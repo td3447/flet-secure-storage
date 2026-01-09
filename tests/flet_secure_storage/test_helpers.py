@@ -65,3 +65,8 @@ def test_add_prefix():
     assert add_prefix("", ".", "key") == "key"
     assert add_prefix("app", ".", "") == "app."
     assert add_prefix("app.", "", "key") == "app.key"
+    assert add_prefix("app", "*", "key") == "app*key"
+    assert add_prefix("app", "/", "key") == "app/key"
+    assert add_prefix("app", "&", "key") == "app&key"
+    assert add_prefix("app", "longprefix", "key") == "applongprefixkey"
+    assert add_prefix("app", 7, "key") == "app7key"
