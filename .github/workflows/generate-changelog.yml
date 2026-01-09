@@ -1,0 +1,35 @@
+name: Generate changelog
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate changelog
+        run: npm run changelog
+        
+      - name: Commit changelog
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions
+          author_email: actions@github.com
+          message: "chore(release): update CHANGELOG.md [skip ci]"
+          add: CHANGELOG.md
+          push: true
