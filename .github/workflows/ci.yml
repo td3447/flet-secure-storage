@@ -51,7 +51,7 @@ jobs:
             - name: Set up Flutter
               uses: subosito/flutter-action@v2
               with:
-                  flutter-version: "3.27.x"
+                  flutter-version: "3.38.5"
                   channel: "stable"
 
             - name: Install dependencies
@@ -68,6 +68,15 @@ jobs:
               run: |
                   cd src/flutter/flet_secure_storage
                   dart analyze --fatal-infos
+
+            - name: Run Flutter tests if present
+              run: |
+                  cd src/flutter/flet_secure_storage
+                  if [ -d "test" ]; then
+                    flutter test
+                  else
+                    echo "No Flutter tests found, skipping"
+                  fi
 
     # Python tests on multiple versions
     python-test:
