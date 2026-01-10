@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 
 _TRUE_STRINGS = {"true", "t", "1", "y", "yes"}
@@ -20,21 +21,24 @@ def parse_str(val: str) -> str:
     raise TypeError(f"Input 'val' must be str, got type: {type(val).__name__} instead.")
 
 
-def parse_bool(val: bool | str) -> bool:
+def parse_bool(val: bool | str | None) -> bool | None:
     """
     Helper method to parse input boolean values as a bool or str,
         and return their boolean representation.
 
     Args:
-        val (bool | str): The boolean value or its string representation.
+        val (bool | str | None): The boolean value or its string representation.
+            None if not provided.
 
     Raises:
         ValueError: If `val` is a string but not a valid boolean representation
         TypeError: If `val` is neither a bool nor a valid string representation
 
     Returns:
-        bool: The boolean representation of the input value.
+        bool | None: The boolean representation of the input value. None if input is not provided.
     """
+    if val is None:
+        return None
 
     if isinstance(val, bool):
         return val
@@ -94,6 +98,74 @@ def parse_enum(enum_val: Enum | str, enum_type: type[Enum]) -> str:
 
     raise TypeError(
         f"`enum_val` must be {enum_type.__name__}, got {type(enum_val).__name__}"
+    )
+
+
+def parse_dt(val: datetime | str | None) -> str | None:
+    """
+    Checks for datetime or string input as ISO 8601 format, and returns the value as a string.
+
+    Args:
+        val (datetime | str | None): The datetime value or its string representation.
+            None if not provided.
+
+    Raises:
+        ValueError: If `val` is a string but not in ISO 8601 format
+        TypeError: If `val` is neither a datetime nor a valid string representation
+
+    Returns:
+        str | None: The ISO 8601 string representation of the datetime value. None if not provided.
+    """
+    if val is None or val == "":
+        return None
+
+    if isinstance(val, datetime):
+        return val.isoformat()
+
+    if isinstance(val, str):
+        try:
+            return datetime.fromisoformat(val).isoformat()
+        except ValueError as exc:
+            raise ValueError(
+                "Datetime string must be ISO 8601 (e.g. '2024-01-01T12:00:00+00:00')."
+            ) from exc
+
+    raise TypeError(
+        f"Input 'val' must be datetime, str, or None, got {type(val).__name__}."
+    )
+
+
+def parse_int(val: int | str | None) -> int | None:
+    """
+    Helper method to parse input integer values as an int or str,
+        and return their integer representation.
+
+    Args:
+        val (int | str | None): The integer value or its string representation.
+            None if not provided.
+
+    Raises:
+        ValueError: If `val` is a string but cannot be converted to an integer
+        TypeError: If `val` is neither an int nor a valid string representation
+
+    Returns:
+
+        int | None: The integer representation of the input value. None if input is not provided.
+    """
+    if val is None or val == "":
+        return None
+
+    if isinstance(val, int):
+        return val
+
+    if isinstance(val, str):
+        try:
+            return int(val.strip())
+        except ValueError as exc:
+            raise ValueError(f"Invalid string for integer: {val!r}") from exc
+
+    raise TypeError(
+        f"Input 'val' must be int or str, got type: {type(val).__name__} instead."
     )
 
 
