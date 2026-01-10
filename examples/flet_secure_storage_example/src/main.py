@@ -25,7 +25,7 @@ from flet_secure_storage.options import (
 async def main(page: ft.Page):
 
     secure_storage = fss.SecureStorage(
-        prefix="net.example ",
+        prefix="net.example",
         i_options=IOSOptions(),
         l_options=LinuxOptions(),
         m_options=MacOsOptions(),
@@ -57,7 +57,7 @@ async def main(page: ft.Page):
     page.window.width = 400
     page.window.height = 600
 
-    async def _set(_e: ft.Event[ft.Button]):
+    async def _set(_e: ft.Event[ft.Button]) -> None:
         # Sets the value in secure storage, Returns bool
         _clear_messages()
         if await secure_storage.set(key_field.value, value_field.value):
@@ -67,24 +67,27 @@ async def main(page: ft.Page):
             _clear_fields()
         else:
             message.value = "Set Failed!"
+        page.update()
 
-    async def _get(_e: ft.Event[ft.Button]):
+    async def _get(_e: ft.Event[ft.Button]) -> None:
         # Gets the value based on the 'key', returns str
         _clear_messages()
         value_field.value = ""
 
         value = await secure_storage.get(key_field.value)
         message.value = f"Retrieved value for '{key_field.value}' is : {value}"
+        page.update()
 
-    async def _contains_key(_e: ft.Event[ft.Button]):
+    async def _contains_key(_e: ft.Event[ft.Button]) -> None:
         # Checks if the key exists in secure storage, returns bool
         _clear_messages()
         value_field.value = ""
 
         exists = await secure_storage.contains_key(key_field.value)
         message.value = f"Key '{key_field.value}' exists: {exists}"
+        page.update()
 
-    async def _remove(_e: ft.Event[ft.Button]):
+    async def _remove(_e: ft.Event[ft.Button]) -> None:
         # Removes the key-value pair from secure storage, returns bool
         _clear_messages()
         value_field.value = ""
@@ -95,8 +98,9 @@ async def main(page: ft.Page):
             message.value = "Remove Failed!"
 
         _clear_fields()
+        page.update()
 
-    async def _get_keys(_e: ft.Event[ft.Button]):
+    async def _get_keys(_e: ft.Event[ft.Button]) -> None:
         # Retrieves all keys from secure storage, returns list[str]
         _clear_messages()
         pairs = await secure_storage.get_keys(key_field.value)
@@ -107,8 +111,9 @@ async def main(page: ft.Page):
                 for pair in pairs
             ]
         )
+        page.update()
 
-    async def _clear(_e: ft.Event[ft.Button]):
+    async def _clear(_e: ft.Event[ft.Button]) -> None:
         # Clears all key-value pairs from secure storage, returns bool
         _clear_messages()
         _clear_fields()
@@ -116,12 +121,13 @@ async def main(page: ft.Page):
             message.value = "Cleared all key-value pairs"
         else:
             message.value = "Clear Failed!"
+        page.update()
 
-    def _clear_messages():
+    def _clear_messages() -> None:
         message.value = ""
         output_field.controls.clear()
 
-    def _clear_fields():
+    def _clear_fields() -> None:
         key_field.value = ""
         value_field.value = ""
 
