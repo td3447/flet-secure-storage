@@ -1,6 +1,15 @@
 from datetime import datetime
 from enum import Enum
 
+__all__ = [
+    "parse_str",
+    "parse_bool",
+    "parse_enum",
+    "parse_dt",
+    "parse_int",
+    "add_prefix",
+]
+
 _TRUE_STRINGS = {"true", "t", "1", "y", "yes"}
 _FALSE_STRINGS = {"false", "f", "0", "n", "no"}
 
@@ -15,6 +24,9 @@ def parse_str(val: str) -> str:
 
     Raises:
         TypeError: If val is not a `str`
+
+    Returns:
+        str: The stripped string value.
     """
     if isinstance(val, str):
         return val.strip()
@@ -149,8 +161,7 @@ def parse_int(val: int | str | None) -> int | None:
         TypeError: If `val` is neither an int nor a valid string representation
 
     Returns:
-
-        int | None: The integer representation of the input value. None if input is not provided.
+        int | None: The stripped int value or None if input is not provided.
     """
     if val is None or val == "":
         return None
@@ -179,8 +190,14 @@ def add_prefix(prefix: str, separator: str, key: str) -> str:
         key (str): The original key.
 
     Returns:
-        str: The new key with the prefix added.
+        str: The new key with the prefix added or just the key if the user added
+            the prefix manually.
     """
     if prefix is None or prefix == "":
         return key
+
+    # Checks to see if key starts with the prefix already
+    if key.startswith(f"{prefix}{separator}"):
+        return key
+
     return f"{prefix}{separator}{key}"
