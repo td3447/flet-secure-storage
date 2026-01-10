@@ -240,10 +240,10 @@ class SecureStorageService extends FletService {
     final web = options['webOptions'] as Map<String, dynamic>?;
     if (web == null) return const WebOptions();
 
-    final webDbName = web['dbName'] as String;
-    final webPublicKey = web['publicKey'] as String;
-    final webWrapKey = web['wrapKey'] as String;
-    final webWrapKeyIv = web['wrapKeyIv'] as String;
+    final webDbName = web['dbName'] as String? ?? "FletEncryptedStorage";
+    final webPublicKey = web['publicKey'] as String? ?? "FletSecureStorage";
+    final webWrapKey = web['wrapKey'] as String? ?? "";
+    final webWrapKeyIv = web['wrapKeyIv'] as String? ?? "";
     final webUseSessionStorage = web['useSessionStorage'] as bool? ?? false;
     return WebOptions(
       dbName: webDbName,
