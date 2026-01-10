@@ -95,6 +95,8 @@ class SecureStorageService extends FletService {
     final androidBiometricPromptSubtitle = android['biometricPromptSubtitle'];
 
     return AndroidOptions(
+      // Will be removed for FlutterSecureStorage 11.0.0 as it is no longer recommended
+      // ignore: deprecated_member_use
       encryptedSharedPreferences: androidEncryptedSharedPreferences,
       resetOnError: androidResetOnError,
       migrateOnAlgorithmChange: androidMigrateOnAlgorithmChange,
