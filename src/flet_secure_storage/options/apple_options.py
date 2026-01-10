@@ -209,9 +209,7 @@ class AppleOptions:
         return {
             "accountName": self.account_name,
             "groupId": parse_str(self.group_id),
-            "accessibility": parse_enum(
-                self.accessibility.value, KeychainAccessibility
-            ),
+            "accessibility": parse_enum(self.accessibility, KeychainAccessibility),
             "synchronizable": parse_bool(self.synchronizable),
             "label": parse_str(self.label),
             "description": parse_str(self.description),
