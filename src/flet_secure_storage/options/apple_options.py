@@ -226,5 +226,6 @@ class AppleOptions:
             ),
             "authenticationUIBehavior": parse_str(self.authentication_ui_behavior),
             "accessControlFlags": [flag.value for flag in self.access_control_flags],
-            "useSecureEnclave": parse_bool(self.use_secure_enclave),
+            # Not yet implemented as of v10.0.0 of flutter_secure_storage
+            # "useSecureEnclave": parse_bool(self.use_secure_enclave),
         }
