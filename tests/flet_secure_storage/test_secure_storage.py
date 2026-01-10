@@ -1,6 +1,12 @@
 import pytest
 
 from flet_secure_storage import SecureStorage
+from flet_secure_storage.options import (
+    AndroidOptions,
+    IOSOptions,
+    KeyCipherAlgorithm,
+    StorageCipherAlgorithm,
+)
 
 
 @pytest.fixture
@@ -59,6 +65,22 @@ class TestSecureStorageErrorHandling:
         with pytest.raises(ValueError):
             await secure_storage.remove(123)
 
+    async def test_set_with_invalid_key_type(self, secure_storage):
+        with pytest.raises(ValueError, match="Key must be a string"):
+            await secure_storage.set(123, "value")  # type: ignore
+
+    async def test_set_with_empty_key(self, secure_storage):
+        with pytest.raises(ValueError, match="Key cannot be empty"):
+            await secure_storage.set("", "value")
+
+    async def test_set_with_whitespace_key(self, secure_storage):
+        with pytest.raises(ValueError, match="Key cannot be empty"):
+            await secure_storage.set("   ", "value")
+
+    async def test_get_with_invalid_key(self, secure_storage):
+        with pytest.raises(ValueError, match="Key must be a string"):
+            await secure_storage.get(None)  # type: ignore
+
 
 @pytest.mark.asyncio
 @pytest.mark.smoke
@@ -116,3 +138,36 @@ class TestSecureStorage:
 
         assert await secure_storage.clear() is True
         assert await secure_storage.contains_key("key") is False
+
+
+# Options Tests
+@pytest.mark.smoke
+def test_android_options_defaults():
+    opts = AndroidOptions()
+    result = opts.options()
+
+    assert result["resetOnError"] is True
+    assert result["migrateOnAlgorithmChange"] is True
+    assert result["enforceBiometrics"] is False
+
+
+@pytest.mark.smoke
+def test_android_options_custom():
+    opts = AndroidOptions(
+        reset_on_error=False,
+        shared_preferences_name="my_app",
+        key_cipher_algorithm=KeyCipherAlgorithm.RSA_ECB_PKCS1Padding,
+    )
+    result = opts.options()
+
+    assert result["resetOnError"] is False
+    assert result["sharedPreferencesName"] == "my_app"
+
+
+@pytest.mark.smoke
+def test_ios_options_defaults():
+    opts = IOSOptions()
+    result = opts.options()
+
+    assert result["accountName"] == "flet_secure_storage_service"
+    assert result["synchronizable"] is False
