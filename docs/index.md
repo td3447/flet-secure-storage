@@ -10,7 +10,3 @@
     start="<!--docs-start-->"
     end="<!--docs-end-->"
 %}
-
-## API Reference
-
-:::flet_secure_storage.SecureStorage

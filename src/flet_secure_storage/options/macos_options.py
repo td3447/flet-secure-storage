@@ -12,9 +12,7 @@ class MacOsOptions(AppleOptions):
     Attributes:
         uses_data_protection_keychain: `kSecUseDataProtectionKeychain` (macOS only): **Shared**.
             Indicates whether the macOS data protection keychain is used.
-            Not applicable on iOS.
-
-        All other attributes are inherited from AppleOptions.
+            Not applicable on iOS. All other attributes are inherited from AppleOptions.
     """
 
     uses_data_protection_keychain: bool = True
