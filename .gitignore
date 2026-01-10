@@ -56,8 +56,11 @@ wheelhouse/
 *.whl
 
 # Misc
-*.lock
 .DS_Store
+# ignore all .lock files
+*.lock
+# except uv.lock at repository root
+!/uv.lock
 
 # Local configuration files
 /.dist
