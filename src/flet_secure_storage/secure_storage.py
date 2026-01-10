@@ -1,6 +1,6 @@
 from collections.abc import Mapping
 from dataclasses import is_dataclass
-from typing import Any, Optional
+from typing import Any, Optional, Protocol, runtime_checkable
 
 import flet as ft
 
@@ -32,6 +32,11 @@ class SecureStorageKeyError(ValueError):
     """
     Raised when an invalid key is provided to SecureStorage methods.
     """
+
+
+@runtime_checkable
+class HasOptions(Protocol):
+    def options(self) -> Mapping[str, object]: ...
 
 
 @ft.control("SecureStorage")  # type: ignore[arg-type]
@@ -106,27 +111,24 @@ class SecureStorage(ft.Service):
             if opt is None or isinstance(opt, Mapping):
                 continue
 
-            if not hasattr(opt, "options") or not callable(opt.options):
-                raise SecureStorageKeyError(
-                    f"{platform_options!r} must be a dataclass with an options() method."
-                )
-
             if not is_dataclass(opt) or isinstance(opt, type):
                 raise SecureStorageKeyError(
                     f"{platform_options!r} must be a dataclass instance with an options() method."
                 )
 
-            options_attr = getattr(opt, "options", None)
-            if not callable(options_attr):
+            if not isinstance(opt, HasOptions):
                 raise SecureStorageKeyError(
-                    f"{platform_options!r} must implement an options() method."
+                    f"{platform_options!r} must implement options() -> Mapping."
                 )
 
-            if not isinstance(options_attr, Mapping):
+            options_dict = opt.options()
+
+            if not isinstance(options_dict, Mapping):
                 raise SecureStorageKeyError(
                     f"{platform_options!r}.options() must return a dictionary-like object."
                 )
-            setattr(self, platform_options, options_attr)
+
+            setattr(self, platform_options, options_dict)
 
     def _validate_key(self, key: str) -> None:
         if not isinstance(key, str):
