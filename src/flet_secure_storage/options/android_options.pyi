@@ -28,4 +28,16 @@ class AndroidOptions:
     preferences_key_prefix: str = ""
     biometric_prompt_title: str = "Authenticate to access"
     biometric_prompt_subtitle: str = "Use biometrics or device credentials"
-    def biometric(self) -> None: ...
+
+    @classmethod
+    def biometric(
+        cls,
+        encrypted_shared_preferences: bool = False,
+        reset_on_error: bool = True,
+        migrate_on_algorithm_change: bool = True,
+        enforce_biometrics: bool = False,
+        shared_preferences_name: str = "",
+        preferences_key_prefix: str = "",
+        biometric_prompt_title: str = "Authenticate to access",
+        biometric_prompt_subtitle: str = "Use biometrics or device credentials",
+    ) -> "AndroidOptions": ...

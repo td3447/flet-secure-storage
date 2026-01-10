@@ -144,13 +144,106 @@ class AndroidOptions:
                 stacklevel=3,
             )
 
-    def biometric(self) -> dict[str, str | bool]:
-        # TODO: implement biometric options
-        return {}
+    @classmethod
+    def biometric(
+        cls,
+        encrypted_shared_preferences: bool = False,
+        reset_on_error: bool = True,
+        migrate_on_algorithm_change: bool = True,
+        enforce_biometrics: bool = False,
+        shared_preferences_name: str = "",
+        preferences_key_prefix: str = "",
+        biometric_prompt_title: str = "Authenticate to access",
+        biometric_prompt_subtitle: str = "Use biometrics or device credentials",
+    ) -> "AndroidOptions":
+        """
+           Creates Android-specific options for secure storage.
+        [Reference - android_options.dart](https://github.com/juliansteenbakker/flutter_secure_storage/blob/05b1c4be30a1c7142dfba6db41b32aa8e6a38c58/flutter_secure_storage/lib/options/android_options.dart)  # noqa: E501
+
+        Attributes:
+            encrypted_shared_preferences: EncryptedSharedPrefences
+                are only available on API 23 and greater
+
+            reset_on_error: When an error is detected, automatically reset all data.
+
+                WARNING: This will prevent fatal errors regarding an unknown key however keep in
+                mind that it will `PERMANENTLY` erase the data when an error occurs.
+
+                Defaults to `True`.
+
+            migrate_on_algorithm_change: When the encryption algorithm changes, automatically
+                migrate existing data to the new algorithm. This preserves data across
+                algorithm upgrades.
+
+                `Note:` If false, data will be lost when algorithm changes unless
+                `reset_on_error` is true.
+
+                Defaults to `True`.
+
+            enforce_biometrics: Whether to enforce biometric/PIN authentication.
+
+                When `True`, the plugin will throw an exception if the device
+                has no PIN, pattern, password, or biometric enrolled. The key will
+                be generated with setUserAuthenticationRequired(true).
+
+                When `False` (default), the plugin will gracefully degrade
+                to storing data without biometric protection if unavailable.
+                The key will be generated with setUserAuthenticationRequired(false).
+
+                Security Note: Set to `True` for highly sensitive data that must
+                never be stored without authentication.
+
+                Defaults to `False`.
+
+            shared_preferences_name: The name of the sharedPreference database to use.
+                You can select your own name if you want. A default name will
+                be used if nothing is provided here.
+
+                `WARNING:`If you change this you can't retrieve already saved preferences.
+
+            preferences_key_prefix: The prefix for a shared preference key.
+                The prefix is used to make sure the key is unique to your application.
+                An underscore (_) is added to the end of the prefix automatically.
+                If not provided, a default prefix will be used.
+
+                Example: preferencesKeyPrefix: "my_app" will result in a key like
+                "my_app_key1".
+
+                `WARNING:` If you change this you can't retrieve already saved preferences.
+
+            biometric_prompt_title: The title shown in the biometric authentication prompt.
+
+            biometric_prompt_subtitle: The subtitle shown in the biometric authentication prompt.
+
+        Note:
+            Defaults are the same as AndroidOptions except for the following:
+
+            - Removed: key_cipher_algorithm, automatically set to
+                `KeyCipherAlgorithm.AES_GCM_NoPadding`
+
+            - Removed: storage_cipher_algorithm, automatically set to
+                `StorageCipherAlgorithm.AES_GCM_NoPadding`
+
+        Returns:
+            AndroidOptions: Configured AndroidOptions instance.
+        """
+
+        return cls(
+            encrypted_shared_preferences=encrypted_shared_preferences,
+            reset_on_error=reset_on_error,
+            migrate_on_algorithm_change=migrate_on_algorithm_change,
+            enforce_biometrics=enforce_biometrics,
+            key_cipher_algorithm=KeyCipherAlgorithm.AES_GCM_NoPadding,
+            storage_cipher_algorithm=StorageCipherAlgorithm.AES_GCM_NoPadding,
+            shared_preferences_name=shared_preferences_name,
+            preferences_key_prefix=preferences_key_prefix,
+            biometric_prompt_title=biometric_prompt_title,
+            biometric_prompt_subtitle=biometric_prompt_subtitle,
+        )
 
     def options(
         self,
-    ) -> dict[str, str | bool]:
+    ) -> dict[str, str | bool | None]:
         """
         Serialize AndroidOptions for Flutter Secure Storage.
 
