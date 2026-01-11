@@ -1,5 +1,4 @@
 import 'package:flet/flet.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // Enum (AndroidOptions)
@@ -114,10 +113,6 @@ class SecureStorageService extends FletService {
         wOptions: _getWindowsOptions(options),
         webOptions: _getWebOptions(options),
         mOptions: _getMacOsOptions(options));
-
-    debugPrint(
-        "SecureStorageService(${control.id}).init: ${control.properties}");
-    control.addInvokeMethodListener(_invokeMethod);
   }
 
   IOSOptions _getIOSOptions(Map<String, dynamic>? options) {
@@ -192,9 +187,9 @@ class SecureStorageService extends FletService {
     final androidStorageCipherAlgorithm =
         _parseStorageCipherAlgorithm(android['storageCipherAlgorithm']);
     final androidSharedPreferencesName =
-        android['sharedPreferencesName'] as String? ?? null;
+        android['sharedPreferencesName'] as String?;
     final androidPreferencesKeyPrefix =
-        android['preferencesKeyPrefix'] as String? ?? null;
+        android['preferencesKeyPrefix'] as String?;
     final androidBiometricPromptTitle =
         android['biometricPromptTitle'] as String?;
     final androidBiometricPromptSubtitle =
@@ -320,14 +315,12 @@ class SecureStorageService extends FletService {
         final key = args["key"];
         final value = args["value"];
         if (key == null || value == null) {
-          debugPrint("SecureStorage.set: missing key or value in args: $args");
           return false;
         }
         try {
           await _storage.write(key: key, value: value);
           return true;
-        } catch (e, stackTrace) {
-          debugPrint("SecureStorage.set error: $e\n$stackTrace");
+        } catch (e) {
           return false;
         }
 
@@ -335,13 +328,11 @@ class SecureStorageService extends FletService {
       case "get": // Returns String?
         final key = args["key"];
         if (key == null) {
-          debugPrint("SecureStorage.get: missing key in args: $args");
           return null;
         }
         try {
           return await _storage.read(key: key);
-        } catch (e, stackTrace) {
-          debugPrint("SecureStorage.get error: $e\n$stackTrace");
+        } catch (e) {
           return null;
         }
 
@@ -349,13 +340,11 @@ class SecureStorageService extends FletService {
       case "contains_key": // Returns bool
         final key = args["key"];
         if (key == null) {
-          debugPrint("SecureStorage.contains_key: missing key in args: $args");
           return false;
         }
         try {
           return await _storage.containsKey(key: key);
-        } catch (e, stackTrace) {
-          debugPrint("SecureStorage.contains_key error: $e\n$stackTrace");
+        } catch (e) {
           return false;
         }
 
@@ -363,8 +352,7 @@ class SecureStorageService extends FletService {
       case "get_keys": // returns Map<String, String>
         try {
           return await _storage.readAll();
-        } catch (e, stackTrace) {
-          debugPrint("SecureStorage.get_keys error: $e\n$stackTrace");
+        } catch (e) {
           return <String, String>{};
         }
 
@@ -372,14 +360,12 @@ class SecureStorageService extends FletService {
       case "remove": // Returns bool
         final key = args["key"];
         if (key == null) {
-          debugPrint("SecureStorage.remove: missing key in args: $args");
           return false;
         }
         try {
           await _storage.delete(key: key);
           return true;
-        } catch (e, stackTrace) {
-          debugPrint("SecureStorage.remove error: $e\n$stackTrace");
+        } catch (e) {
           return false;
         }
 
@@ -388,8 +374,7 @@ class SecureStorageService extends FletService {
         try {
           await _storage.deleteAll();
           return true;
-        } catch (e, stackTrace) {
-          debugPrint("SecureStorage.clear error: $e\n$stackTrace");
+        } catch (e) {
           return false;
         }
 
@@ -400,7 +385,6 @@ class SecureStorageService extends FletService {
 
   @override
   void dispose() {
-    debugPrint("SecureStorageService(${control.id}).dispose()");
     control.removeInvokeMethodListener(_invokeMethod);
     super.dispose();
   }
