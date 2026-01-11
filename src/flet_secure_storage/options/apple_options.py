@@ -1,3 +1,4 @@
+from abc import ABC
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum, unique
@@ -85,7 +86,7 @@ class AccessControlFlag(Enum):
 
 
 @dataclass
-class AppleOptions:
+class AppleOptions(ABC):
     """
     Creates Apple specific options for secure storage. This is the main class
         inherited by iOSOptions and MacOsOptions.
@@ -201,7 +202,7 @@ class AppleOptions:
     should_return_persistent_reference: bool | None = None
     authentication_ui_behavior: str = ""
     access_control_flags: list[AccessControlFlag] = field(default_factory=list)
-    use_secure_enclave: bool = False
+    # use_secure_enclave: bool = False
 
     def options(
         self,
