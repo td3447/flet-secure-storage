@@ -1,6 +1,6 @@
 from collections.abc import Mapping
 from dataclasses import is_dataclass
-from typing import Any, Optional, Protocol, runtime_checkable
+from typing import Any, Optional, Protocol, cast, runtime_checkable
 
 import flet as ft
 
@@ -98,7 +98,8 @@ class SecureStorage(ft.Service):
         Sets each platform options attribute to a dictionary, or raises TypeError
         if the attribute is not a dataclass with an options() method.
         """
-        super().before_update()
+        # super().before_update is not typed in flet; silence mypy for this call
+        super().before_update()  # type: ignore[no-untyped-call]
         for platform_options in (
             "i_options",
             "a_options",
@@ -150,7 +151,9 @@ class SecureStorage(ft.Service):
         """
         self._validate_key(key)
         key = add_prefix(self.prefix, self.prefix_separator, key)
-        return await self._invoke_method("set", {"key": key, "value": value})
+        return cast(
+            bool, await self._invoke_method("set", {"key": key, "value": value})
+        )
 
     async def get(self, key: str) -> Optional[str]:
         """
@@ -165,7 +168,7 @@ class SecureStorage(ft.Service):
         """
         self._validate_key(key)
         key = add_prefix(self.prefix, self.prefix_separator, key)
-        return await self._invoke_method("get", {"key": key})
+        return cast(Optional[str], await self._invoke_method("get", {"key": key}))
 
     async def contains_key(self, key: str) -> bool:
         """
@@ -180,7 +183,7 @@ class SecureStorage(ft.Service):
         """
         self._validate_key(key)
         key = add_prefix(self.prefix, self.prefix_separator, key)
-        return await self._invoke_method("contains_key", {"key": key})
+        return cast(bool, await self._invoke_method("contains_key", {"key": key}))
 
     async def remove(self, key: str) -> bool:
         """
@@ -195,7 +198,7 @@ class SecureStorage(ft.Service):
         """
         self._validate_key(key)
         key = add_prefix(self.prefix, self.prefix_separator, key)
-        return await self._invoke_method("remove", {"key": key})
+        return cast(bool, await self._invoke_method("remove", {"key": key}))
 
     async def get_keys(self, key_prefix: str = "") -> list[str]:
         """
@@ -220,7 +223,9 @@ class SecureStorage(ft.Service):
         else:
             key_prefix = add_prefix(self.prefix, self.prefix_separator, key_prefix)
 
-        response: dict[str, str] = await self._invoke_method("get_keys")
+        response: dict[str, str] = cast(
+            dict[str, str], await self._invoke_method("get_keys")
+        )
 
         return [
             f"{key}:{value}"
@@ -236,4 +241,4 @@ class SecureStorage(ft.Service):
         Returns:
             bool: True if the storage was cleared successfully, False otherwise.
         """
-        return await self._invoke_method("clear")
+        return cast(bool, await self._invoke_method("clear"))
