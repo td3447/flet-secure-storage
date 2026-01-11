@@ -1,5 +1,5 @@
 from .android_options import AndroidOptions, KeyCipherAlgorithm, StorageCipherAlgorithm
-from .apple_options import AppleOptions
+from .apple_options import AccessControlFlag, KeychainAccessibility
 from .ios_options import IOSOptions
 from .linux_options import LinuxOptions
 from .macos_options import MacOsOptions
@@ -11,9 +11,10 @@ __all__ = [
     "AndroidOptions",
     "KeyCipherAlgorithm",
     "StorageCipherAlgorithm",
-    "AppleOptions",
     "LinuxOptions",
     "WebOptions",
     "WindowsOptions",
     "MacOsOptions",
+    "KeychainAccessibility",
+    "AccessControlFlag",
 ]
