@@ -429,6 +429,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -538,6 +566,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -591,41 +647,103 @@
 <h1 id="build-from-source">Build from Source<a class="headerlink" href="#build-from-source" title="Permanent link">&para;</a></h1>
 <p>Use this section if you would like to make changes to the source code for your own project.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<h3 id="minimum">Minimum<a class="headerlink" href="#minimum" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://git-scm.com/install/">Git</a></li>
 <li><a href="https://docs.astral.sh/uv/">UV Astral</a></li>
 <li><a href="https://www.python.org/">Python 3.10+</a></li>
 </ul>
+<h3 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://developer.android.com/studio">Android Studio</a></li>
+</ul>
 <h2 id="prepare-the-environment">Prepare the Environment<a class="headerlink" href="#prepare-the-environment" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Clone the repository to the location of your choosing.</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/td3447/flet-secure-storage.git
-</code></pre></div>
+<p>Clone the repository to the location of your choosing.
+    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/td3447/flet-secure-storage.git
+</code></pre></div></p>
 </li>
 <li>
-<p>From the root directory, install flet with uv.</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>sync
-</code></pre></div>
+<p>From the root directory, install flet with uv.
+    <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>sync
+</code></pre></div></p>
 </li>
 <li>
-<p>Change to the build directory.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/flet_secure_storage_example
-</code></pre></div>
+<p>Change to the build directory.
+    <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/flet_secure_storage_example
+</code></pre></div></p>
 </li>
 <li>
-<p>Build the project (initially). Choose your system (windows, macos, etc.)</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>flet<span class="w"> </span>build<span class="w"> </span>&lt;system&gt;
-</code></pre></div>
+<p>Deactivate root environment
+    <div class="highlight"><pre><span></span><code>deactivate
+</code></pre></div></p>
+</li>
+<li>
+<p>Install the local dependencies needed based on the platform:
+    <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>sync
+</code></pre></div></p>
+</li>
+<li>
+<p>Modify <code>pyproject.toml</code> in the examples folder based on the host platform</p>
+<ul>
+<li>Windows: Set an environment variable for <code>PROJECT_ROOT</code> or specify a absolute path.</li>
+<li>
+<p>Linux/Mac OS: Uncomment <code># "flet-secure-storage @ file:///${PWD}/../..", # Linux</code> and comment out the windows line.</p>
+</li>
+<li>
+<p>Windows
+    <code>toml
+    dependencies = [
+    # $env:PROJECT_ROOT = ($PWD.Path -replace '\\','/')  # Temporary Environment variable for Windows PowerShell
+    # setx PROJECT_ROOT "$($PWD.Path)"                   # Permanent Environment variable for Windows PowerShell
+    "flet-secure-storage @ file:///${PROJECT_ROOT}/../..", # for Windows
+    # "flet-secure-storage @ file:///C:/path/to/flet-secure-storage", # Alternative Windows path
+    # "flet-secure-storage @ file:///${PWD}/../..", # Linux
+    # "flet-secure-storage @ file:///home/user/path/to/flet-secure-storage", # Alternative Linux path
+    "flet&gt;=0.80.0",
+    ]</code></p>
+</li>
+<li>Linux
+    <div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="s2">&quot;flet-secure-storage @ file:///${PWD}/../..&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Linux</span>
+<span class="c1"># &quot;flet-secure-storage @ file:///home/user/path/to/flet-secure-storage&quot;, # Alternative Linux path</span>
+<span class="s2">&quot;flet&gt;=0.80.0&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div></li>
+<li>Build the project. Choose your system (windows, linux, apk, etc.)
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>flet<span class="w"> </span>build<span class="w"> </span>-v<span class="w"> </span>&lt;system&gt;
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Run the example to test build output.</p>
+</li>
+<li>
+<p>Desktop (Linux/Windows)
+    <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>flet<span class="w"> </span>run<span class="w"> </span>-v
+</code></pre></div></p>
+</li>
+<li>
+<p>Web
+    <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>flet<span class="w"> </span>serve<span class="w"> </span>-v
+</code></pre></div></p>
+</li>
+<li>
+<p>Android</p>
+<ul>
+<li>Get the built <code>.apk</code> from <code>/examples/flet_secure_storage_example/build/apk/app-release.apk</code></li>
+<li>Run it in your emulator of choice. (e.g., drag apk onto Android Studios emulator)</li>
+</ul>
 </li>
 </ol>
 <h3 id="building-wheel-for-pypi">Building wheel for PyPi<a class="headerlink" href="#building-wheel-for-pypi" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
-<p>Build extension</p>
-<div class="highlight"><span class="filename">Build for Windows</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/flet_secure_storage_example
+<p>Build extension
+    <div class="highlight"><span class="filename">Build for Windows</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/flet_secure_storage_example
 flet<span class="w"> </span>build<span class="w"> </span>windows
-</code></pre></div>
+</code></pre></div></p>
 <p>or</p>
 <div class="highlight"><span class="filename">Build for Android</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/flet_secure_storage_example
 flet<span class="w"> </span>build<span class="w"> </span>apk
@@ -646,19 +764,19 @@ flet<span class="w"> </span>build<span class="w"> </span>apk
 </code></pre></div>
 </li>
 <li>
-<p>Create .pypirc file C:/Users/<user>/.pypirc  with the following contents</p>
-<div class="highlight"><span class="filename">.pypirc</span><pre><span></span><code><span class="k">[distutils]</span>
+<p>Create .pypirc file C:/Users/<user>/.pypirc  with the following contents
+    <div class="highlight"><span class="filename">.pypirc</span><pre><span></span><code><span class="k">[distutils]</span>
 <span class="n">index-servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">pypi</span>
 
 <span class="k">[pypi]</span>
 <span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">__</span><span class="n">token__</span>
 <span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">pypi-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  &lt;- token from PyPi</span>
-</code></pre></div>
+</code></pre></div></p>
 </li>
 <li>
-<p>Upload to PyPi</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>twine<span class="w"> </span>upload<span class="w"> </span>dist/*
-</code></pre></div>
+<p>Upload to PyPi
+    <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>twine<span class="w"> </span>upload<span class="w"> </span>dist/*
+</code></pre></div></p>
 </li>
 </ul>
 
