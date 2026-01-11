@@ -3,46 +3,89 @@ Use this section if you would like to make changes to the source code for your o
 
 ## Requirements
 
+### Minimum
 - [Git](https://git-scm.com/install/)
 - [UV Astral](https://docs.astral.sh/uv/)
 - [Python 3.10+](https://www.python.org/)
 
+### Optional
+- [Android Studio](https://developer.android.com/studio)
+
 ## Prepare the Environment
 
 1. Clone the repository to the location of your choosing.
-
     ```bash
     git clone https://github.com/td3447/flet-secure-storage.git
     ```
 
 2. From the root directory, install flet with uv.
-
     ```bash
     uv sync
     ```
 
 3. Change to the build directory.
-
     ```bash
     cd examples/flet_secure_storage_example
     ```
 
-4. Install the local dependencies needed based on the platform:
-
-    | Platform | Install command    |  Platforms           |
-    |----------|--------------------|----------------------|
-    | Desktop  | `uv sync`          | Windows, Linux, MacOS|
-    | Modbile  | `uv sync --no-dev` | Android, iOS         |
-
-5. Build the project (initially). Choose your system (windows, macos, etc.)
-
+4. Deactivate root environment
     ```bash
-    uv run flet build <system>
+    deactivate
+    ```   
+
+5. Install the local dependencies needed based on the platform:
+    ```bash
+    uv sync
     ```
+
+6. Modify `pyproject.toml` in the examples folder based on the host platform
+    - Windows: Set an environment variable for `PROJECT_ROOT` or specify a absolute path.
+    - Linux/Mac OS: Uncomment `# "flet-secure-storage @ file:///${PWD}/../..", # Linux` and comment out the windows line.
+
+    
+    * Windows
+        ```toml
+        dependencies = [
+        # $env:PROJECT_ROOT = ($PWD.Path -replace '\\','/')  # Temporary Environment variable for Windows PowerShell
+        # setx PROJECT_ROOT "$($PWD.Path)"                   # Permanent Environment variable for Windows PowerShell
+        "flet-secure-storage @ file:///${PROJECT_ROOT}/../..", # for Windows
+        # "flet-secure-storage @ file:///C:/path/to/flet-secure-storage", # Alternative Windows path
+        # "flet-secure-storage @ file:///${PWD}/../..", # Linux
+        # "flet-secure-storage @ file:///home/user/path/to/flet-secure-storage", # Alternative Linux path
+        "flet>=0.80.0",
+        ]
+    ```
+    * Linux
+        ```toml
+        dependencies = [
+        "flet-secure-storage @ file:///${PWD}/../..", # Linux
+        # "flet-secure-storage @ file:///home/user/path/to/flet-secure-storage", # Alternative Linux path
+        "flet>=0.80.0",
+        ]
+        ```
+7. Build the project. Choose your system (windows, linux, apk, etc.)
+    ```bash
+    uv run flet build -v <system>
+    ```
+
+8. Run the example to test build output.
+
+- Desktop (Linux/Windows)
+    ```bash
+    uv run flet run -v
+    ```
+
+- Web
+    ```bash
+    uv run flet serve -v
+    ```
+    
+- Android
+    - Get the built `.apk` from `/examples/flet_secure_storage_example/build/apk/app-release.apk`
+    - Run it in your emulator of choice. (e.g., drag apk onto Android Studios emulator)
 
 ### Building wheel for PyPi
 - Build extension
-
     ```bash title="Build for Windows"
     cd examples/flet_secure_storage_example
     flet build windows
@@ -75,7 +118,6 @@ Use this section if you would like to make changes to the source code for your o
     ```
 
 - Create .pypirc file C:/Users/<user>/.pypirc  with the following contents
-
     ```toml title=".pypirc"
     [distutils]
     index-servers = pypi
@@ -86,7 +128,6 @@ Use this section if you would like to make changes to the source code for your o
     ```
 
 - Upload to PyPi
-
     ```bash
     uv run twine upload dist/*
     ```

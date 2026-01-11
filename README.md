@@ -21,8 +21,8 @@ It utilizes the [flutter_secure_storage](https://pub.dev/packages/flutter_secure
 |------------|:---------:|
 | Windows    | ✅       |
 | Android    | ✅       |
-| Web        | ⚠️       |
-| Linux      | ⚠️       |
+| Web        | ✅       |
+| Linux      | ✅       |
 | macOS      | 🚧       |
 | iOS        | 🚧       |
 
