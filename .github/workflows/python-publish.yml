@@ -61,7 +61,10 @@ jobs:
         with:
           packages-dir: dist/
 
-      - name: Upload release assets (attach dist to GitHub Release)
+      - name: Install GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
+
+      - name: Upload dist/ assets to GitHub Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
