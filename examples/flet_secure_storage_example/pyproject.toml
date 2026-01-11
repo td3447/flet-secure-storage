@@ -6,7 +6,12 @@ readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Flet developer", email = "you@example.com" }]
 dependencies = [
-    "flet-secure-storage @ file://${PROJECT_ROOT}../../src/flet_secure_storage",
+    # $env:PROJECT_ROOT = ($PWD.Path -replace '\\','/')  # Temporary Environment variable for Windows PowerShell
+    # setx PROJECT_ROOT "$($PWD.Path)"                   # Permanent Environment variable for Windows PowerShell
+    "flet-secure-storage @ file:///${PROJECT_ROOT}/../..", # for Windows
+    # "flet-secure-storage @ file:///C:/path/to/flet-secure-storage", # Alternative Windows path
+    # "flet-secure-storage @ file:///${PWD}/../..", # Linux
+    # "flet-secure-storage @ file:///home/user/path/to/flet-secure-storage", # Alternative Linux path
     "flet>=0.80.0",
 ]
 
@@ -29,10 +34,10 @@ copyright = "Copyright (C) 2025 by MyCompany"
 path = "src"
 
 [tool.flet.dev_packages]
-flet-secure-storage = "..\\.." # relative path
+flet-secure-storage = "../.."
 
 [dependency-groups]
 dev = ["flet[all]>=0.80.0"]
 
 [tool.uv.sources]
-flet-secure-storage = { path = "..\\..\\", editable = true }
+flet-secure-storage = { path = "../..", editable = true }
