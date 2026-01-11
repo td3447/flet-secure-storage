@@ -113,6 +113,8 @@ class SecureStorageService extends FletService {
         wOptions: _getWindowsOptions(options),
         webOptions: _getWebOptions(options),
         mOptions: _getMacOsOptions(options));
+
+    control.addInvokeMethodListener(_invokeMethod);
   }
 
   IOSOptions _getIOSOptions(Map<String, dynamic>? options) {
